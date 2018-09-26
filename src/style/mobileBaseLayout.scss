@@ -1,0 +1,72 @@
+.playerBase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    #center {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        #resourcesLeft {
+
+        }
+        #base {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            #leftRow {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                #topL {
+
+                }
+                #middleL {
+
+                }
+                #bottomL {
+
+                }
+            }
+            #middleRow {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                #topM {
+
+                }
+                #middleM {
+
+                }
+                #bottomM {
+
+                }
+            }
+            #rightRow {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                #topR {
+
+                }
+                #middleR {
+
+                }
+                #bottomR {
+
+                }
+            }
+        }
+        #buildMenu {
+
+        }
+    }
+    #bottomTabs {
+
+    }
+}
