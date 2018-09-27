@@ -7,10 +7,16 @@ class PlayerBase extends Component {
             <div className='playerBase'>
                 <div id="center">
                     <div id="resourcesLeft">
-                        resources
+                        supply
                     </div>
                     <div id="base">
                         <div id="leftRow">
+                            <div id="topL2">
+                                tl2
+                            </div>
+                            <div id="topL1">
+                                tl1
+                            </div>
                             <div id="topL">
                                 tl
                             </div>
@@ -20,8 +26,20 @@ class PlayerBase extends Component {
                             <div id="bottomL">
                                 bl
                             </div>
+                            <div id="bottomL1">
+                                bl1
+                            </div>
+                            <div id="bottomL2">
+                                bl2
+                            </div>
                         </div>
                         <div id="middleRow">
+                            <div id="topM2">
+                                tm2
+                            </div>
+                            <div id="topM1">
+                                tm1
+                            </div>
                             <div id="topM">
                                 tm
                             </div>
@@ -31,8 +49,20 @@ class PlayerBase extends Component {
                             <div id="bottomM">
                                 bm
                             </div>
+                            <div id="bottomM1">
+                                bm1
+                            </div>
+                            <div id="bottomM1">
+                                bm2
+                            </div>
                         </div>
                         <div id="rightRow">
+                            <div id="topR2">
+                                tr2
+                            </div>
+                            <div id="topR1">
+                                tr1
+                            </div>
                             <div id="topR">
                                 tr
                             </div>
@@ -41,6 +71,12 @@ class PlayerBase extends Component {
                             </div>
                             <div id="bottomR">
                                 br
+                            </div>
+                            <div id="bottomR1">
+                                bR1
+                            </div>
+                            <div id="bottomR2">
+                                bR2
                             </div>
                         </div>
                     </div>
