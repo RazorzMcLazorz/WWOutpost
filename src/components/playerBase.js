@@ -2,6 +2,107 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class PlayerBase extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            // can upgrade?
+            // left
+            tl2: false,
+            tl1: false,
+            tl: false,
+            ml: false,
+            bl: false,
+            bl1: false,
+            bl2: false,
+            // middle
+            tm2: false,
+            tm1: false,
+            tm: false,
+            mm: true,
+            bm: false,
+            bm1: false,
+            bm2: false,
+            // right
+            tr2: false,
+            tr1: false,
+            tr: false,
+            mr: false,
+            br: false,
+            br1: false,
+            br2: false,
+        }
+        // bind
+        // this.startGame = this.startGame.bind(this);
+    }
+    // building placements
+    // LeftRow
+    tl2() {
+
+    }
+    tl1() {
+
+    }  
+    tl() {
+
+    }
+    ml() {
+
+    }
+    bl() {
+
+    }
+    bl1() {
+
+    }
+    bl2() {
+
+    }
+    // Middle
+    tm2() {
+
+    }
+    tm1() {
+
+    }  
+    tm() {
+
+    }
+    mm() {
+
+    }
+    bm() {
+
+    }
+    bm1() {
+
+    }
+    bm2() {
+
+    }
+    // Right
+    tr2() {
+
+    }
+    tr1() {
+
+    }  
+    tr() {
+
+    }
+    mr() {
+
+    }
+    br() {
+
+    }
+    br1() {
+
+    }
+    br2() {
+
+    }
+
+
     render() {
         return (
             <div className='playerBase'>
@@ -10,6 +111,7 @@ class PlayerBase extends Component {
                         supply
                     </div>
                     <div id="base">
+                        {/* LEFT */}
                         <div id="leftRow">
                             <div id="topL2">
                                 tl2
@@ -33,6 +135,7 @@ class PlayerBase extends Component {
                                 bl2
                             </div>
                         </div>
+                        {/* MID */}
                         <div id="middleRow">
                             <div id="topM2">
                                 tm2
@@ -56,6 +159,7 @@ class PlayerBase extends Component {
                                 bm2
                             </div>
                         </div>
+                        {/* RIGHT */}
                         <div id="rightRow">
                             <div id="topR2">
                                 tr2
@@ -73,10 +177,10 @@ class PlayerBase extends Component {
                                 br
                             </div>
                             <div id="bottomR1">
-                                bR1
+                                br1
                             </div>
                             <div id="bottomR2">
-                                bR2
+                                br2
                             </div>
                         </div>
                     </div>
@@ -85,7 +189,12 @@ class PlayerBase extends Component {
                     </div>
                 </div>
                 <div id="bottomTabs">
-                    tabs
+                    <Link to="/TechnologyMenu" id="techTab" className="bTab">
+                        Tech
+                    </Link>
+                    <Link to="/ResourcePage" id="resourceTab" className="bTab">
+                        Resource
+                    </Link>
                 </div>
             </div>
         );

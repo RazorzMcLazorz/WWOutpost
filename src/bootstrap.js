@@ -8,6 +8,7 @@ import reducers from './reducers';
 import MainMenu from './components/mainMenu';
 import PlayerBase from './components/playerBase';
 import ResourcePage from './components/resourcePage';
+import TechnologyMenu from './components/technologyMenu';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
@@ -23,6 +24,7 @@ function main() {
             <Route exact path="/" component={MainMenu} />
             <Route exact path="/PlayerBase" component={PlayerBase} />
             <Route exact path="/ResourcePage" component={ResourcePage} />
+            <Route exact path="/TechnologyMenu" component={TechnologyMenu} />
         </Switch>
       </BrowserRouter>
     </Provider>

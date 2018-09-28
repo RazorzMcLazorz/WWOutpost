@@ -1,0 +1,56 @@
+.resourcePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    #resTop {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        #stoneTab {
+
+        }
+        #woodTab {
+
+        }
+    }
+    #resMid {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        #upgradeTab {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            #upgradeTabHover {
+
+            }
+        }
+        #resRight {
+            #oilTab {
+
+            }
+            #foodTab {
+
+            }
+        }
+        #resourceRight {
+            
+        }
+    }
+    #resBott {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        #metalTab {
+
+        }
+        #gunPowderTab {
+
+        }
+    }
+}

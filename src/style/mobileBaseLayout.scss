@@ -88,6 +88,23 @@
         align-items: center;
         height: 15vh;
         width: 100vw;
-        background-color: rgb(59, 122, 59);
+        .bTab {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            outline: none;
+            height: 40%;
+            width: 100px;
+            margin: 5%;
+            border-radius: 15px;
+            color: white;
+        }
+        #techTab {
+            background-color: rgb(129, 105, 105);
+        }
+        #resourceTab {
+            background-color: rgb(102, 0, 0);
+        }
     }
 }
