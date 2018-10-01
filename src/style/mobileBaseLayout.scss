@@ -26,6 +26,10 @@
                     width: 50px;
                     background-color: cornflowerblue;
                     margin: 5px;
+                    img {
+                        height: 50px;
+                        width: 50px;
+                    }
                 }
             }
             #leftRow {
@@ -75,10 +79,35 @@
             }
         }
         #buildMenu {
-            width: 25vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
             height: 45vh;
             width: 25vw;
             background-color: rgb(190, 190, 43);
+            .buildMenuTitle {
+                font-size: 15px;
+            }
+            div {
+                width: 100%;
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    border-style: solid;
+                    border-width: 1px;
+                    border-left-width: 0;
+                    border-right-width: 0;
+                    min-height: 25px;
+                    max-height: 50px;
+                    width: 100%;
+                    padding-bottom: 7.5px;
+                    padding-top: 7.5px;
+                }
+                
+            }
         }
     }
     #bottomTabs {
