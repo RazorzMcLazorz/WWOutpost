@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import reducers from './reducers';
+// import reducers from './reducers';
+import reducers from './js/reducers';
 
 import MainMenu from './components/mainMenu';
 import PlayerBase from './components/playerBase';

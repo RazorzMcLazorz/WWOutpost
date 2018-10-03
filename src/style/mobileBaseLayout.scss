@@ -12,6 +12,23 @@
             width: 20vw;
             height: 60vh;
             background-color: rgb(209, 131, 131);
+            div {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                font-size: 15px;
+                border-style: solid;
+                border-width: 0;
+                border-top-width: 1px;
+                width: 100%;
+                img {
+                    width: 20px;
+                    margin-right: 3px;
+                }
+            }
+            a {
+            }
         }
         #base {
             display: flex;
@@ -29,6 +46,16 @@
                     img {
                         height: 50px;
                         width: 50px;
+                    }
+                    img:hover {
+                        border-style: solid;
+                        border-width: 1px;
+                        border-color: blue;
+                    }
+                    img:active {
+                        border-style: solid;
+                        border-width: 1px;
+                        border-color: blue;
                     }
                 }
             }
@@ -83,14 +110,16 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            height: 45vh;
+            height: 46vh;
             width: 25vw;
             background-color: rgb(190, 190, 43);
+            
             .buildMenuTitle {
                 font-size: 15px;
             }
             div {
                 width: 100%;
+                overflow: scroll;
                 div {
                     display: flex;
                     flex-direction: column;
@@ -101,12 +130,31 @@
                     border-left-width: 0;
                     border-right-width: 0;
                     min-height: 25px;
-                    max-height: 50px;
+                    max-height: 100%;
                     width: 100%;
                     padding-bottom: 7.5px;
                     padding-top: 7.5px;
+                    div {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: flex-start;
+                        height: 100%;
+                        font-size: 10px;
+                        a{
+                            font-size: 15px;
+                            margin-left: 15px;
+                            img{
+                                height: 20px;
+                            }
+                        }
+                    }
                 }
-                
+            }
+            #x {
+                position: relative;
+                height: 70px;
+
             }
         }
     }

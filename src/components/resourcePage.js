@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './building';
+import funct, { x } from './building';
+import { connect } from 'react-redux';
+import * as actions from '../js/actions';
 
-export default class ResourcePage extends Component {
+class ResourcePage extends Component {
     render() {
         return (
             <div className='resourcePage'>
                 <div id="resTop">
                     <div id="stoneTab">
-                        Stone
+                        Stone{this.props.stone}
                     </div>
                     <div id="woodTab">
                         Wood
@@ -47,3 +51,12 @@ export default class ResourcePage extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    console.log(state)
+    return state
+}
+
+ResourcePage = connect(mapStateToProps, actions)(ResourcePage);
+
+export default ResourcePage;

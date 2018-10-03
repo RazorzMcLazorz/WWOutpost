@@ -1,100 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './building';
-import funct, { x } from './building';
+import { connect } from 'react-redux';
+import * as actions from '../js/actions';
+
+// board costs: wood refund [0], food refund [1], metal refund [2], stone refund [3], oil refund [4], population [5], research [6]
+const board = {
+    'home' : [3, 2, 0, 0, 0, 10, 0],
+    'camp' : [4, 1, 1, 2, 0, 0, 0],
+    'store' : [5, 3, 0, 0, 0, 0, 0],
+    'school' : [1, 0, 0, 4, 0, 0, 5],
+    'factory' : [1, 0, 2, 3, 2, 0, 0],
+};
 
 class PlayerBase extends Component {
     
-    constructor(props) {
-        super(props)
-        this.state = {
-            buildMenuValue : '',
-            upgrade : false,
-            upgradeConnect : '',
-            build : false,
-            buildConnect : '',
-            building : {
-                'tl2' : false,
-                'tl1' : false,
-                'tl' : false,
-                'ml' : false,
-                'bl' : false,
-                'bl1' : false,
-                'bl2' : false,
-            
-                'tm2' : false,
-                'tm1' : false,
-                'tm' : false,
-                'mm' : true,
-                'bm' : false,
-                'bm1' : false,
-                'bm2' : false,
-            
-                'tr2' : false,
-                'tr1' : false,
-                'tr' : false,
-                'mr' : false,
-                'br' : false,
-                'br1' : false,
-                'br2' : false,
-            },
-            built : {
-                'tl2' : '',
-                'tl1' : '',
-                'tl' : '',
-                'ml' : '',
-                'bl' : '',
-                'bl1' : '',
-                'bl2' : '',
-            
-                'tm2' : '',
-                'tm1' : '',
-                'tm' : '',
-                'mm' : '',
-                'bm' : '',
-                'bm1' : '',
-                'bm2' : '',
-            
-                'tr2' : '',
-                'tr1' : '',
-                'tr' : '',
-                'mr' : '',
-                'br' : '',
-                'br1' : '',
-                'br2' : '',
-            },
-            builtTier : {
-                'tl2' : 't1',
-                'tl1' : 't1',
-                'tl' : 't1',
-                'ml' : 't1',
-                'bl' : 't1',
-                'bl1' : 't1',
-                'bl2' : 't1',
-            
-                'tm2' : 't1',
-                'tm1' : 't1',
-                'tm' : 't1',
-                'mm' : 't1',
-                'bm' : 't1',
-                'bm1' : 't1',
-                'bm2' : 't1',
-            
-                'tr2' : 't1',
-                'tr1' : 't1',
-                'tr' : 't1',
-                'mr' : 't1',
-                'br' : 't1',
-                'br1' : 't1',
-                'br2' : 't1',
-            }
-        }
-    }
-
 // makes sure that the img is correct
     asset(arg) {
-        if (this.state.built[arg]) {
-            arg = this.state.built[arg] + this.state.builtTier[arg];
+        if (this.props.built[arg]) {
+            arg = this.props.built[arg] + this.props.builtTier[arg];
            return arg = `./assets/${arg}.png`; 
             // console.log(arg);
         }
@@ -104,40 +28,122 @@ class PlayerBase extends Component {
     }
 
 // CONSTRUCTS buildings with requirements filled
-    construct(type, W, F, M, S, O) {
-        let temp = this.state.buildConnect;
-        let object = this.state.built;
-        console.log(this.state.built[temp]);
-        object[temp] = type;
-        this.setState({built: object });
-        console.log(temp);
-        console.log(this.state.built);
-        console.log(type);
-        console.log(W);
-        console.log(F);
-        console.log(M);
-        console.log(S);
-        console.log(O);
-        this.setState({build : false});
-        object = this.state.building;
-        object[temp] = true;
-        this.setState({ building: object });
+    construct(typer, W, F, M, S, O) {
+        this.props.changeState({ buildResource : false });
+        let temp = this.props.buildConnect;
+        let tier = this.props.builtTier[temp];
+        let unlocked = typer + this.props.builtTier[temp];
+        console.log('unlocked: ' + unlocked);
+        if (W <= this.props.wood && F <= this.props.food && M <= this.props.metal && S <= this.props.stone && O <= this.props.oil && this.props.research[unlocked] === true) {
+            
+            let object = this.props.built;
+            console.log(this.props.built[temp]);
+            object[temp] = typer;
+            this.props.changeState({built: object });
+            console.log(temp);
+            console.log(this.props.built);
+            console.log(typer);
+            W = this.props.wood - W;
+            this.props.changeState({wood : W});
+            console.log(W);
+            F = this.props.food - F;
+            this.props.changeState({food : F});
+            console.log(F);
+            M = this.props.metal - M;
+            this.props.changeState({metal : M});
+            console.log(M);
+            S = this.props.stone - S;
+            this.props.changeState({stone : S});
+            console.log(S);
+            O = this.props.oil - O;
+            this.props.changeState({oil : O});
+            console.log(O);
 
+            console.log('boardval pop: ' + board[typer][5]);
+            let popt = this.props.pop + board[typer][5];
+            this.props.changeState({ pop : popt});
+            // population increase
+            
+            console.log('boardval res: ' + board[typer][6]);
+            let rest = this.props.res + board[typer][6];
+            this.props.changeState({ res : rest});
+            // population increase
+
+            this.props.changeState({build : false});
+            object = this.props.building;
+            object[temp] = true;
+            this.props.changeState({ building: object });
+            this.props.changeState({ buildResource : false });
+        }
+        else {
+            console.log('broke');
+            this.props.changeState({ buildResource : true });
+        }
+    }
+
+    Deconstruct() {
+        let temp = this.props.upgradeConnect;
+        let object = this.props.built;
+        let num = 0;
+        let item = object[temp];
+
+        num = this.props.wood + board[item][0];
+        this.props.changeState({ wood: num });
+        console.log('Wood Refund : ' + item + ' : ' + board[item][0])
+        // Wood Refund
+
+        num = this.props.food + board[item][1];
+        this.props.changeState({ food: num });
+        console.log('Food Refund : ' + item + ' : ' + board[item][1])
+        // Food Refund
+
+        num = this.props.metal + board[item][2];
+        this.props.changeState({ metal: num });
+        console.log('Metal Refund : ' + item + ' : ' + board[item][2])
+        // Metal Refund
+        
+        num = this.props.stone + board[item][3];
+        this.props.changeState({ stone: num });
+        console.log('Stone Refund : ' + item + ' : ' + board[item][3])
+        // Stone Refund
+
+        num = this.props.oil + board[item][4];
+        this.props.changeState({ oil: num });
+        console.log('Oil Refund : ' + item + ' : ' + board[item][4])
+        // Oil Refund
+
+        num = this.props.pop - board[item][5];
+        this.props.changeState({ pop: num });
+        console.log('Population Removal : ' + item + ' : ' + board[item][5])
+        // Population Removal
+        
+        num = this.props.res - board[item][6];
+        this.props.changeState({ res: num });
+        console.log('Research Removal : ' + item + ' : ' + board[item][6])
+        // Research Removal
+
+        object[temp] = '';
+        this.props.changeState({built: object });
+        object = this.props.building;
+        object[temp] = false;
+        this.props.changeState({ building: object });
+        this.props.changeState({upgrade: false});
     }
 
     Build (model) {
+        this.props.changeState({ buildResource : false });
         // connecting to Build Menu
-        if (this.state.building[model] === true) {
+        if (this.props.building[model] === true) {
             console.log('nope');
-            this.setState({upgrade: true});
-            this.setState({build: false});
-            this.setState({upgradeConnect: model});
+            this.props.changeState({upgrade: true});
+            this.props.changeState({build: false});
+            this.props.changeState({upgradeConnect: model});
         }
-        else if (this.state.building[model] === false) {
+        else if (this.props.building[model] === false) {
             console.log('it worked');
-            this.setState({build: true});
-            this.setState({upgrade: false});
-            this.setState({buildConnect: model});
+            this.props.changeState({ build: true });
+            this.props.changeState({ upgrade: false });
+            this.props.changeState({ buildConnect: model });
         }
         else {
             console.log('not working');
@@ -149,7 +155,50 @@ class PlayerBase extends Component {
             <div className='playerBase'>
                 <div id="center">
                     <div id="resourcesLeft">
-                        supply
+                        <a>supplies</a>
+                        <div>
+                            <img src="./assets/wood.svg"></img>
+                            {this.props.wood}
+                        </div>
+                        <a>
+                            + {this.props.woodAdd}
+                        </a>
+                        <div>
+                            <img src="./assets/food.svg"></img>
+                            {this.props.food}
+                        </div>
+                        <a>
+                            + {this.props.foodAdd}
+                        </a>
+                        <div>
+                            <img src="./assets/metal.svg"></img>
+                            {this.props.metal}
+                        </div>
+                        <a>
+                            + {this.props.metalAdd}
+                        </a>
+                        <div>
+                            <img src="./assets/stone.svg"></img>
+                            {this.props.stone}
+                        </div>
+                        <a>
+                            + {this.props.stoneAdd}
+                        </a>
+                        <div>
+                            <img src="./assets/oil.svg"></img>
+                            {this.props.oil}
+                        </div>
+                        <a>
+                            + {this.props.oilAdd}
+                        </a>
+                        <div>
+                            <img src="./assets/pop.svg"></img>
+                            {this.props.pop}
+                        </div>
+                        <div>
+                            <img src="./assets/res.svg"></img>
+                            {this.props.res}
+                        </div>
                     </div>
                     <div id="base">
                         {/* LEFT */}
@@ -228,39 +277,71 @@ class PlayerBase extends Component {
                     </div>
                     {/* Build Menu */}
                     <div id="buildMenu">
-                        {this.state.build ?
+                        {this.props.build ?
                         <a className="buildMenuTitle">
                             build menu
                         </a> : '' }
-                        {this.state.build ?
+                        {this.props.buildResource ?
+                        <div id="x">
+                            <i className="far fa-times-circle"></i>
+                        </div>: ''}
+                        {this.props.build ?
                         <div>
+                            {/* typer, Wood, Food, Metal, Stone, Oil */}
                             <div onClick={() => this.construct('home', 5, 3, 0, 0, 0)}>
                                 Home
+                                <div>
+                                    <a><img src="./assets/wood.svg"></img> - 5</a>
+                                    <a><img src="./assets/food.svg"></img> - 3</a>
+                                    <a><img src="./assets/pop.svg"></img> + 10</a>
+                                </div>
                             </div>
-                            <div onClick={() => this.construct('camp', 5, 3, 0, 0, 0)}>
+                            <div onClick={() => this.construct('camp', 7, 2, 2, 4, 0)}>
                                 Camp
+                                <div>
+                                    <a><img src="./assets/wood.svg"></img> - 7</a>
+                                    <a><img src="./assets/food.svg"></img> - 2</a>
+                                    <a><img src="./assets/metal.svg"></img> - 2</a>
+                                    <a><img src="./assets/stone.svg"></img> - 4</a>
+                                </div>
                             </div>
-                            <div onClick={() => this.construct('store', 5, 3, 0, 0, 0)}>
+                            <div onClick={() => this.construct('store', 9, 6, 0, 0, 0)}>
                                 Store
+                                <div>
+                                    <a><img src="./assets/wood.svg"></img> - 9</a>
+                                    <a><img src="./assets/food.svg"></img> - 6</a>
+                                </div>
                             </div>
-                            <div onClick={() => this.construct('school', 5, 3, 0, 0, 0)}>
+                            <div onClick={() => this.construct('school', 2, 0, 0, 8, 0)}>
                                 School
+                                <div>
+                                    <a><img src="./assets/wood.svg"></img> - 2</a>
+                                    <a><img src="./assets/stone.svg"></img> - 8</a>
+                                    <a><img src="./assets/res.svg"></img> + 5</a>
+                                </div>
                             </div>
-                            <div onClick={() => this.construct('factory', 5, 3, 0, 0, 0)}>
+                            <div onClick={() => this.construct('factory', 1, 0, 4, 6, 4)}>
                                 Factory
+                                <div>
+                                    <a><img src="./assets/wood.svg"></img> - 1</a>
+                                    <a><img src="./assets/metal.svg"></img> - 4</a>
+                                    <a><img src="./assets/stone.svg"></img> - 6</a>
+                                    <a><img src="./assets/oil.svg"></img> - 4</a>
+                                </div>
                             </div>
                         </div> : '' }
+                        
                         {/* UPGRADE */}
-                        {this.state.upgrade ?
+                        {this.props.upgrade ?
                         <a className="buildMenuTitle">
                             <i className="fas fa-arrow-circle-up"></i> menu
                         </a> : '' }
-                        {this.state.upgrade ?
+                        {this.props.upgrade ?
                         <div>
                             <div>
                                 Upgrade
                             </div>
-                            <div>
+                            <div onClick={() => this.Deconstruct()}>
                                 Destroy
                             </div>
                         </div> : ''}
@@ -278,5 +359,11 @@ class PlayerBase extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return state
+}
+
+PlayerBase = connect(mapStateToProps, actions)(PlayerBase);
 
 export default PlayerBase;

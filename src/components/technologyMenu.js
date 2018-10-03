@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './building';
+import funct, { x } from './building';
+import { connect } from 'react-redux';
+import * as actions from '../js/actions';
 
-export default class TechnologyMenu extends Component {
+class TechnologyMenu extends Component {
     render() {
         return (
             <div className='technologyMenu'>
@@ -35,3 +39,12 @@ export default class TechnologyMenu extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    console.log(state)
+    return state
+}
+
+TechnologyMenu = connect(mapStateToProps, actions)(TechnologyMenu);
+
+export default TechnologyMenu;
