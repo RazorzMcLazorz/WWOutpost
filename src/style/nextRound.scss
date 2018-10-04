@@ -1,0 +1,127 @@
+.nextRound {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    #nextTitle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+        height: 70px;
+        width: 100vw;
+    }
+    #numberTroops {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100vw;
+        height: 50px;
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50vw;
+        }
+    }
+    #centerNext {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        #nextLeft {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 75vw;
+            #sending1 {
+
+            }
+            #sending2 {
+
+            }
+            #sending3 {
+
+            }
+            #reset {
+
+            }
+            .sending {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                width: 225px;
+                border-style: solid;
+                border-color: black;
+                border-width: 1px;
+                border-radius: 15px;
+                margin: 3px;
+            }
+        }
+        #precise {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 75vw;
+            width: 25vw;
+            .addMinus {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                height: 35px;
+                width: 35px;
+                border-style: solid;
+                border-color: black;
+                border-width: 1px;
+                border-radius: 5px;
+                margin: 3px;
+            }
+        }
+    }
+    #botom {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+        #send {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 50vw;
+            height: 50px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: black;
+            border-radius: 10px;
+            margin-left: 10px;
+        }
+        #backNext {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 40vw;
+            height: 50px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: black;
+            border-radius: 10px;
+            text-decoration: none;
+            color: black;
+        }
+        #backNext:hover {
+            background-color: rgb(88, 88, 163);
+        }
+    }
+}

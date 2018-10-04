@@ -134,13 +134,13 @@ class PlayerBase extends Component {
         this.props.changeState({ buildResource : false });
         // connecting to Build Menu
         if (this.props.building[model] === true) {
-            console.log('nope');
+            console.log('Upgrade Menu');
             this.props.changeState({upgrade: true});
             this.props.changeState({build: false});
             this.props.changeState({upgradeConnect: model});
         }
         else if (this.props.building[model] === false) {
-            console.log('it worked');
+            console.log('Building Menu');
             this.props.changeState({ build: true });
             this.props.changeState({ upgrade: false });
             this.props.changeState({ buildConnect: model });
@@ -153,6 +153,14 @@ class PlayerBase extends Component {
     render() {
         return (
             <div className='playerBase'>
+                <div id='text'>
+                    <a>
+                        {this.props.text1}
+                    </a>
+                    <a>
+                        {this.props.text2}
+                    </a>
+                </div>
                 <div id="center">
                     <div id="resourcesLeft">
                         <a>supplies</a>
@@ -198,6 +206,10 @@ class PlayerBase extends Component {
                         <div>
                             <img src="./assets/res.svg"></img>
                             {this.props.res}
+                        </div>
+                        <div>
+                            <img src="./assets/troop.svg"></img>
+                            {this.props.troop}
                         </div>
                     </div>
                     <div id="base">
@@ -286,7 +298,7 @@ class PlayerBase extends Component {
                             <i className="far fa-times-circle"></i>
                         </div>: ''}
                         {this.props.build ?
-                        <div>
+                        <div className="scroll">
                             {/* typer, Wood, Food, Metal, Stone, Oil */}
                             <div onClick={() => this.construct('home', 5, 3, 0, 0, 0)}>
                                 Home
@@ -337,7 +349,7 @@ class PlayerBase extends Component {
                             <i className="fas fa-arrow-circle-up"></i> menu
                         </a> : '' }
                         {this.props.upgrade ?
-                        <div>
+                        <div className="scroll">
                             <div>
                                 Upgrade
                             </div>
@@ -348,6 +360,9 @@ class PlayerBase extends Component {
                     </div>
                 </div>
                 <div id="bottomTabs">
+                    <Link to="/NextRound" id="nextRound" className="bTab">
+                        Next Round
+                    </Link>
                     <Link to="/TechnologyMenu" id="techTab" className="bTab">
                         Tech
                     </Link>

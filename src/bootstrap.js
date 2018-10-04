@@ -10,6 +10,7 @@ import MainMenu from './components/mainMenu';
 import PlayerBase from './components/playerBase';
 import ResourcePage from './components/resourcePage';
 import TechnologyMenu from './components/technologyMenu';
+import NextRound from './components/nextRound';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
@@ -26,6 +27,7 @@ function main() {
             <Route exact path="/PlayerBase" component={PlayerBase} />
             <Route exact path="/ResourcePage" component={ResourcePage} />
             <Route exact path="/TechnologyMenu" component={TechnologyMenu} />
+            <Route exact path="/NextRound" component={NextRound} />
         </Switch>
       </BrowserRouter>
     </Provider>

@@ -97,12 +97,17 @@ const initialState = {
         oil : 0,
         pop : 0,
         res : 5,
+        troop : 32,
         woodAdd : 0,
         foodAdd : 0,
         metalAdd: 0,
         stoneAdd : 0,
         oilAdd : 0,
+        troopAdd : 0,
         buildResource : false,
+        text1 : 'text 1',
+        text2 : 'text 2',
+        troopAll : true,
 };
 
 const rootReducer = (state = initialState, action) => {
