@@ -101,7 +101,7 @@ class PlayerBase extends Component {
         this.props.changeState({ metal: num });
         console.log('Metal Refund : ' + item + ' : ' + board[item][2])
         // Metal Refund
-        
+
         num = this.props.stone + board[item][3];
         this.props.changeState({ stone: num });
         console.log('Stone Refund : ' + item + ' : ' + board[item][3])
@@ -154,12 +154,22 @@ class PlayerBase extends Component {
         return (
             <div className='playerBase'>
                 <div id='text'>
-                    <a>
-                        {this.props.text1}
-                    </a>
-                    <a>
-                        {this.props.text2}
-                    </a>
+                    <div id="lefttext">
+                        <a className="round">
+                            Round
+                        </a>
+                        <a className="round">
+                            {this.props.round}
+                        </a>
+                    </div>
+                    <div id="righttext">
+                        <a>
+                            {this.props.text1}
+                        </a>
+                        <a>
+                            {this.props.text2}
+                        </a>
+                    </div>
                 </div>
                 <div id="center">
                     <div id="resourcesLeft">

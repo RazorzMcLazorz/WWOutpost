@@ -1,18 +1,32 @@
 .resourcePage {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
     #resTop {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        height: 20%;
+        width: 100vw;
+        background-color: blue;
+        div {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: yellow;
+            height: 50px;
+            width: 100px;
+            margin: 10px;
+        }
         #stoneTab {
-
+            
         }
         #woodTab {
-
         }
     }
     #resMid {
@@ -20,25 +34,114 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        width: 100vw;
+        height: 80%;
         #upgradeTab {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
+            height: 100%;
+            width: 150px;
+            background-color: green;
             #upgradeTabHover {
-
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                height: 100%;
+                width: 100%;
+                a {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    height: 10%;
+                    border-bottom-style: solid;
+                    border-bottom-width: 1px;
+                    width: 100%;
+                }
+                div {
+                    
+                }
+                .tb {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    height: 10%;
+                    border-bottom-style: solid;
+                    border-bottom-width: 1px;
+                    width: 100%;
+                }
+                #cost {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    min-height: 25%;
+                    max-height: 100%;
+                    border-bottom-style: solid;
+                    border-bottom-width: 1px;
+                    width: 100%;
+                    a {
+                        border-width: 0;
+                    }
+                    img {
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 3px;
+                    }
+                    div {
+                        margin-left: 25%;
+                        margin-bottom: 5px;
+                    }
+                }
             }
         }
         #resRight {
+            div {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                background-color: yellow;
+                height: 50px;
+                width: 100px;
+                margin: 10px;
+            }
             #oilTab {
 
             }
             #foodTab {
-
+                margin-top: 50%;
             }
         }
         #resourceRight {
-            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            border-style: solid;
+            border-width: 1px;
+            width: 20%;
+            div {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                border-top-style: solid;
+                border-top-width: 1px;
+                width: 100%;
+                height: 30px;
+                img {
+                    width: 25px;
+                    height: 25px;
+                    margin-right: 3px;
+                }
+            }
         }
     }
     #resBott {
@@ -46,11 +149,29 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        height: 20%;
+        width: 100vw;
+        background-color: blue;
         #metalTab {
-
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: yellow;
+            height: 50px;
+            width: 100px;
+            margin: 10px;
         }
-        #gunPowderTab {
-
+        #resourceBack {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: yellow;
+            height: 50px;
+            width: 60px;
+            border-radius: 25px;
+            margin-right: 20%;
         }
     }
 }

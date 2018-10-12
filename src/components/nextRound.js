@@ -7,6 +7,7 @@ class NextRound extends Component {
 
     Troop13(arg) {
         if (arg === 'reset') {
+            this.props.changeState({ troopAdd: 0 });
             this.props.changeState({ troopAll: true });
             this.props.changeState({ text1: 'Has been reset.' });
         }
@@ -17,17 +18,50 @@ class NextRound extends Component {
                 temp = Math.round(temp);
                 console.log(temp);
                 this.props.changeState({ troopAll: false });
+                this.props.changeState({ troopAdd: temp });
             }
             else if (arg === 'half') {
-
+                let troops = this.props.troop;
+                let temp = troops * .5;
+                temp = Math.round(temp);
+                console.log(temp);
+                this.props.changeState({ troopAll: false });
+                this.props.changeState({ troopAdd: temp });
             }
             else if (arg === 'all') {
-
+                let troops = this.props.troop;
+                let temp = troops;
+                temp = Math.round(temp);
+                console.log(temp);
+                this.props.changeState({ troopAll: false });
+                this.props.changeState({ troopAdd: temp });
             }
         }
         else {
             this.props.changeState({ text1: 'Unless reset, cant be used.' });
         }
+    }
+
+    AddMinus (sign, num) {
+        let temp = 0;
+        if (sign === '+') {
+            temp = this.props.troopAdd + num
+        }
+        else if (sign === '-') {
+            temp = this.props.troopAdd - num
+        }
+        if (temp >= 0 && temp <= this.props.troop) {
+            this.props.changeState({ troopAdd: temp });
+        }
+        else {
+            this.props.changeState({ text1: 'Not Enough Troops.' });
+        }
+    }
+
+    EndRound () {
+        let temp = this.props.round + 1;
+        this.props.changeState({ round : temp });
+        console.log('I work')
     }
 
     render() {
@@ -69,27 +103,27 @@ class NextRound extends Component {
                     </div>
 
                     <div id="precise">
-                        <div className="addMinus">
+                        <div className="addMinus" onClick={() => this.AddMinus( '+', 10 )}>
                             + 10
                         </div>
 
-                        <div className="addMinus">
+                        <div className="addMinus" onClick={() => this.AddMinus( '+', 5 )}>
                             + 5
                         </div>
 
-                        <div className="addMinus">
+                        <div className="addMinus" onClick={() => this.AddMinus( '+', 1 )}>
                             + 1
                         </div>
 
-                        <div className="addMinus">
+                        <div className="addMinus" onClick={() => this.AddMinus( '-', 1 )}>
                             - 1
                         </div>
 
-                        <div className="addMinus">
+                        <div className="addMinus" onClick={() => this.AddMinus( '-', 5 )}>
                             - 5
                         </div>
 
-                        <div className="addMinus">
+                        <div className="addMinus" onClick={() => this.AddMinus( '-', 10 )}>
                             - 10
                         </div>
                     </div>
@@ -97,9 +131,9 @@ class NextRound extends Component {
                 </div>
 
                 <div id="botom">
-                    <div id="send">
+                    <Link to="/PlayerBase" id="send" onClick={() => this.EndRound()}>
                         Send Troops Off
-                    </div>
+                    </Link>
                     <Link to="/PlayerBase" id="backNext">
                         Back
                     </Link>
