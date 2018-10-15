@@ -6,10 +6,10 @@ import { connect } from 'react-redux';
 import * as actions from '../js/actions';
 
 const gather = {
-    wood : [1,1,2,0,0],
+    wood : [0,1,2,0,0],
     food : [0,0,1,2,0],
-    metal : [1,0,1,0,2],
-    stone : [0,1,2,0,0],
+    metal : [1,0,0,3,2],
+    stone : [1,1,2,0,0],
     oil : [1,1,2,2,0],
 }
 
@@ -18,6 +18,7 @@ let tier = '';
 
 class ResourcePage extends Component {
 
+    // When "upgrade" is CLicked will call this function to build
 completeUpgrade() {
     i = this.props.resourceSelected;
     tier = this.props.supTier;
@@ -31,15 +32,15 @@ completeUpgrade() {
     let r3 = this.props.metal;
     let r4 = this.props.stone;
     let r5 = this.props.oil;
-    console.log(rq1  , rq2 , rq3 , rq4 , rq5);
-    console.log(r1  , r2 , r3 , r4 , r5);
+    console.log(rq1, rq2, rq3, rq4, rq5);
+    console.log(r1, r2, r3, r4, r5);
     console.log(i);
     if (tier != 5 && rq1 <= r1 &&  rq2 <= r2 &&  rq3 <= r3 && rq4 <= r4 && rq5 <= r5) {
         console.log('leveled up!');
         let object = this.props.Tier;
         console.log(object);
         object[i + 'Tier'] = object[i + 'Tier'] + 1;
-        console.log(object);
+        console.log(object[i]);
         this.props.changeState({ Tier : object });
         this.props.changeState({ supTier : this.props.supTier + 1 });
         this.props.changeState({ upgradeSupplies : false });
@@ -48,12 +49,25 @@ completeUpgrade() {
         this.props.changeState({ metal : this.props.metal - rq3 });
         this.props.changeState({ stone : this.props.stone - rq4 });
         this.props.changeState({ oil : this.props.oil - rq5 });
+    // updates the round supplier
+        console.log(object);
+        this.props.changeState({ woodAdd: 10 * object['woodTier'] });
+        this.props.changeState({ foodAdd: 10 * object['foodTier'] });
+        this.props.changeState({ metalAdd: 10 * object['metalTier'] });
+        this.props.changeState({ stoneAdd: 10 * object['stoneTier'] });
+        this.props.changeState({ oilAdd: 10 * object['oilTier'] });
+    }
+    else if (tier === 5) {
+        this.props.changeState({ cost : 'max level' });
+        console.log('cant upgrade anymore its maxed out');
     }
     else {
-        console.log('cant upgrade anymore its maxed out');
+        this.props.changeState({ cost : 'no supplies' });
+        console.log('not enough resources');
     }
 }
 
+// When any resource that can be upgraded is CLicked it will call this function
 upgrade(resource) {
     this.props.changeState({resourceSelected : resource });
     tier = this.props.resource;
@@ -71,29 +85,32 @@ upgrade(resource) {
     this.props.changeState({supCost5 : i });
     i = this.props.Tier[resource + 'Tier'];
     this.props.changeState({ supTier : i });
+    this.props.changeState({ cost : 'cost' });
 }
 
     render() {
         return (
             <div className='resourcePage'>
+                {/* resources on top */}
                 <div id="resTop">
+                {/* stone */}
                     <div id="stoneTab" onClick={() => this.upgrade('stone')}>
                         Stone + {this.props.stoneAdd}
                     </div>
+                {/* wood */}
                     <div id="woodTab" onClick={() => this.upgrade('wood')}>
                         Wood + {this.props.woodAdd}
                     </div>
                 </div>
                 <div id="resMid">
                     <div id="upgradeTab">
+                    {/* upgrade tab to left, only shows when a resource that can be upgraded is clicked */}
                         {this.props.upgradeSupplies ?
                         <div id="upgradeTabHover">
                             <a>Upgrade Tab</a>
                             <div className="tb">ima {this.props.supTier}/5 upgrade</div>
                             <div id="cost">
-                                <a>
-                                    cost
-                                </a>
+                                <a>{this.props.cost}</a>
                                 <div>
                                     <img src="./assets/wood.svg"></img>
                                     {this.props.supCost1}
@@ -120,14 +137,18 @@ upgrade(resource) {
                             </div>
                         </div> : ''}
                     </div>
+                    {/* resources in the center */}
                     <div id="resRight">
+                    {/* oil */}
                         <div id="oilTab" onClick={() => this.upgrade('oil')}>
                             Oil + {this.props.oilAdd}
-                        </div> 
+                        </div>
+                    {/* food */}
                         <div id="foodTab" onClick={() => this.upgrade('food')}>
                             Food + {this.props.foodAdd}
                         </div>
                     </div>
+                {/* displays the current resources of the player stockpile */}
                     <div id="resourceRight">
                         <a>supplies</a>
                         <div>
@@ -164,10 +185,13 @@ upgrade(resource) {
                         </div>
                     </div>
                 </div>
+                {/* bottom tab */}
                 <div id="resBott">
+                {/* allows player to return to his/her base */}
                     <Link to="/PlayerBase" id="resourceBack">
                         Base
                     </Link>
+                {/* metal */}
                     <div id="metalTab" onClick={() => this.upgrade('metal')}>
                         Metal + {this.props.metalAdd}
                     </div>

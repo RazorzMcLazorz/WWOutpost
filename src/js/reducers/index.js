@@ -125,12 +125,12 @@ const initialState = {
         res : 5,
         troop : 32,
 
-        woodAdd : 0,
-        foodAdd : 0,
-        metalAdd: 0,
-        stoneAdd : 0,
-        oilAdd : 0,
-        troopAdd : 0,
+        woodAdd : 10,
+        foodAdd : 10,
+        metalAdd: 10,
+        stoneAdd : 10,
+        oilAdd : 10,
+        troopAdd : 10,
 
         Tier : {
             stoneTier : 1,
@@ -154,7 +154,8 @@ const initialState = {
         supCost4 : 0,
         supCost5 : 0,
         supTier : 1,
-        resourceSelected : '', 
+        resourceSelected : '',
+        cost : 'cost',
 };
 
 const rootReducer = (state = initialState, action) => {
