@@ -14,20 +14,49 @@ const gather = {
 }
 
 let i = null;
+let tier = '';
 
 class ResourcePage extends Component {
 
 completeUpgrade() {
-    if () {
-
+    i = this.props.resourceSelected;
+    tier = this.props.supTier;
+    let rq1 = this.props.supCost1;
+    let rq2 = this.props.supCost2;
+    let rq3 = this.props.supCost3;
+    let rq4 = this.props.supCost4;
+    let rq5 = this.props.supCost5;
+    let r1 = this.props.wood;
+    let r2 = this.props.food;
+    let r3 = this.props.metal;
+    let r4 = this.props.stone;
+    let r5 = this.props.oil;
+    console.log(rq1  , rq2 , rq3 , rq4 , rq5);
+    console.log(r1  , r2 , r3 , r4 , r5);
+    console.log(i);
+    if (tier != 5 && rq1 <= r1 &&  rq2 <= r2 &&  rq3 <= r3 && rq4 <= r4 && rq5 <= r5) {
+        console.log('leveled up!');
+        let object = this.props.Tier;
+        console.log(object);
+        object[i + 'Tier'] = object[i + 'Tier'] + 1;
+        console.log(object);
+        this.props.changeState({ Tier : object });
+        this.props.changeState({ supTier : this.props.supTier + 1 });
+        this.props.changeState({ upgradeSupplies : false });
+        this.props.changeState({ wood : this.props.wood - rq1 });
+        this.props.changeState({ food : this.props.food - rq2 });
+        this.props.changeState({ metal : this.props.metal - rq3 });
+        this.props.changeState({ stone : this.props.stone - rq4 });
+        this.props.changeState({ oil : this.props.oil - rq5 });
     }
     else {
-
+        console.log('cant upgrade anymore its maxed out');
     }
 }
 
 upgrade(resource) {
-    let tier = this.props.resource;
+    this.props.changeState({resourceSelected : resource });
+    tier = this.props.resource;
     console.log(resource);
     this.props.changeState({upgradeSupplies : true});
     i = gather[resource][0];
@@ -149,7 +178,6 @@ upgrade(resource) {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return state
 }
 
