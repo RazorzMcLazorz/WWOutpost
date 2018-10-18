@@ -3,8 +3,15 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../js/actions';
 
-class NextRound extends Component {
+let num = 0;
+// random function
+function ourRandomRange(ourMin, ourMax) {
+    num = Math.floor(Math.random() * (ourMax - ourMin + 1)) + ourMin;
+}
 
+class NextRound extends Component {
+    
+    // the more advanced tropp deployment
     Troop13(arg) {
         if (arg === 'reset') {
             this.props.changeState({ troopAdd: 0 });
@@ -41,7 +48,7 @@ class NextRound extends Component {
             this.props.changeState({ text1: 'Unless reset, cant be used.' });
         }
     }
-
+// determinds the troop amount being set
     AddMinus (sign, num) {
         let temp = 0;
         if (sign === '+') {
@@ -58,10 +65,49 @@ class NextRound extends Component {
         }
     }
 
+// Ends Current Round and moves on to what happen
     EndRound () {
         let temp = this.props.round + 1;
         this.props.changeState({ round : temp });
         console.log('I work')
+        this.props.changeState({ wood : this.props.wood + this.props.woodAdd });
+        this.props.changeState({ food : this.props.food + this.props.foodAdd });
+        this.props.changeState({ metal : this.props.metal + this.props.metalAdd });
+        this.props.changeState({ stone : this.props.stone + this.props.stoneAdd });
+        this.props.changeState({ oil : this.props.oil + this.props.oilAdd });
+        ourRandomRange(1, 2);
+        if (num === 1) {
+            console.log('you win');
+            ourRandomRange(4, this.props.troopAdd);
+            this.props.changeState({ survived : num});
+            // needs to be fixed
+            let nums = this.props.troopAdd - this.props.survived;
+            console.log(this.props.troopAdd - this.props.survived);
+            this.props.changeState({ deaths : nums });
+            ourRandomRange(0, 2);
+            this.props.changeState({ woodGained : num });
+            ourRandomRange(0, 3);
+            this.props.changeState({ foodGained : num });
+            ourRandomRange(0, 2);
+            this.props.changeState({ metalGained : num });
+            ourRandomRange(0, 1);
+            this.props.changeState({ stoneGained : num });
+            ourRandomRange(0, 1);
+            this.props.changeState({ oilGained : num });
+        }
+        else if (num === 2) {
+            console.log('you loose');
+            this.props.changeState({ survived : 0 });
+            this.props.changeState({ deaths : this.props.troopAdd })
+            this.props.changeState({ woodGained : 0 });
+            this.props.changeState({ foodGained : 0 });
+            this.props.changeState({ metalGained : 0 });
+            this.props.changeState({ stoneGained : 0 });
+            this.props.changeState({ oilGained : 0 });
+        }
+        else {
+            console.log('I Broke');
+        }
     }
 
     render() {
@@ -131,7 +177,7 @@ class NextRound extends Component {
                 </div>
 
                 <div id="botom">
-                    <Link to="/PlayerBase" id="send" onClick={() => this.EndRound()}>
+                    <Link to="/WarInfo" id="send" onClick={() => this.EndRound()}>
                         Send Troops Off
                     </Link>
                     <Link to="/PlayerBase" id="backNext">

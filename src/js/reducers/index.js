@@ -156,6 +156,17 @@ const initialState = {
         supTier : 1,
         resourceSelected : '',
         cost : 'cost',
+        winLoose  : 'win/loose',
+        survived  : 0,
+        deaths : 0,
+        // score of the game what the High score is
+        scoreAdd : 0,
+        score : 0,
+        woodGained : 0,
+        foodGained : 0,
+        metalGained : 0,
+        stoneGained : 0,
+        oilGained : 0,
 };
 
 const rootReducer = (state = initialState, action) => {
