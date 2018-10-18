@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../js/actions';
 
 let num = 0;
+let nums = 0;
 // random function
 function ourRandomRange(ourMin, ourMax) {
     num = Math.floor(Math.random() * (ourMax - ourMin + 1)) + ourMin;
@@ -80,10 +81,6 @@ class NextRound extends Component {
             console.log('you win');
             ourRandomRange(4, this.props.troopAdd);
             this.props.changeState({ survived : num});
-            // needs to be fixed
-            let nums = this.props.troopAdd - this.props.survived;
-            console.log(this.props.troopAdd - this.props.survived);
-            this.props.changeState({ deaths : nums });
             ourRandomRange(0, 2);
             this.props.changeState({ woodGained : num });
             ourRandomRange(0, 3);

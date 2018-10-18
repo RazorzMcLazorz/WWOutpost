@@ -29,14 +29,6 @@ class WarInfo extends Component {
                                 {this.props.survived}
                             </a>
                         </div>
-                        <div>
-                            <a>
-                                Deaths
-                            </a>
-                            <a className="point">
-                                {this.props.deaths}
-                            </a>
-                        </div>
                     </div>
                     {/* right */}
                     <div id="wIRight">
