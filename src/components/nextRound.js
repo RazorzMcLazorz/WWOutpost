@@ -78,7 +78,7 @@ class NextRound extends Component {
         ourRandomRange(1, 2);
         if (num === 1) {
             console.log('you win');
-            this.props.changeState({ winLoose : 'you won the war' });
+            this.props.changeState({ winLoose : 'you won the battle' });
             ourRandomRange(4, this.props.troopAdd);
             this.props.changeState({ survived : num});
             ourRandomRange(0, 2);
@@ -91,10 +91,11 @@ class NextRound extends Component {
             this.props.changeState({ stoneGained : num });
             ourRandomRange(0, 1);
             this.props.changeState({ oilGained : num });
+            this.props.changeState({ battleWon : this.props.battleWon + 1 });
         }
         else if (num === 2) {
             console.log('you loose');
-            this.props.changeState({ winLoose : 'you lost the war' });
+            this.props.changeState({ winLoose : 'you lost the battle' });
             this.props.changeState({ survived : 0 });
             this.props.changeState({ deaths : this.props.troopAdd });
             this.props.changeState({ woodGained : 0 });
@@ -108,6 +109,10 @@ class NextRound extends Component {
         }
         this.props.changeState({ text1 : '' });
         this.props.changeState({ text2 : '' });
+        if (this.props.round === 12) {
+            this.props.changeState({ gameOver : true });
+        }
+        
     }
 
     render() {

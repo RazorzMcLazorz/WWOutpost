@@ -167,6 +167,8 @@ const initialState = {
         metalGained : 0,
         stoneGained : 0,
         oilGained : 0,
+        battleWon : 0,
+        gameOver : false,
 };
 
 const rootReducer = (state = initialState, action) => {

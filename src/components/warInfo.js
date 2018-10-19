@@ -63,9 +63,13 @@ class WarInfo extends Component {
                     <a>Score</a>
                     <a className="point">{this.props.scoreAdd}</a>
                 </div>
-                <Link to="/PlayerBase" id="wICont">
+                {this.props.gameOver ?
+                <Link to="/GameOver" className="wICont">
                     Continue
-                </Link>
+                </Link> :
+                <Link to="/PlayerBase" className="wICont">
+                    Continue
+                </Link>}
             </div>
         );
     }

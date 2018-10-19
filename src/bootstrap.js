@@ -12,6 +12,7 @@ import ResourcePage from './components/resourcePage';
 import TechnologyMenu from './components/technologyMenu';
 import NextRound from './components/nextRound';
 import WarInfo from './components/warInfo';
+import GameOver from './components/gameOver';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
@@ -30,6 +31,7 @@ function main() {
             <Route exact path="/TechnologyMenu" component={TechnologyMenu} />
             <Route exact path="/NextRound" component={NextRound} />
             <Route exact path="/WarInfo" component={WarInfo} />
+            <Route exact path="/GameOver" component={GameOver} />
         </Switch>
       </BrowserRouter>
     </Provider>
