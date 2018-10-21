@@ -29,6 +29,27 @@ class PlayerBase extends Component {
 
 // CONSTRUCTS buildings with requirements filled
     construct(typer, W, F, M, S, O) {
+
+        if(typer === 'home') {
+            this.props.changeState({ text1 : 'The Home adds new population' });
+            this.props.changeState({ text2 : 'to your supplies to make soldiers' });
+        }
+        else if (typer === 'camp') {
+            this.props.changeState({ text1 : 'The Camp allows better troop' });
+            this.props.changeState({ text2 : 'training increasing troop survival' });
+        }
+        else if (typer === 'store') {
+            this.props.changeState({ text1 : 'The Store adds to population' });
+            this.props.changeState({ text2 : 'multiplier increases on tier' });
+        }
+        else if (typer === 'school') {
+            this.props.changeState({ text1 : 'The School increases Research' });
+            this.props.changeState({ text2 : 'production in supplies' });
+        }
+        else if (typer === 'factory') {
+            this.props.changeState({ text1 : 'The Factory increases soldier' });
+            this.props.changeState({ text2 : 'survival on the battle field' });
+        }
         this.props.changeState({ buildResource : false });
         let temp = this.props.buildConnect;
         let tier = this.props.builtTier[temp];
@@ -130,7 +151,11 @@ class PlayerBase extends Component {
         this.props.changeState({upgrade: false});
     }
 
+    // Activates when a yellow square is clicked
     Build (model) {
+        this.props.changeState({ text1 : 'The Build Menu allows you to' });
+        this.props.changeState({ text2 : 'build buildings for population' });
+
         this.props.changeState({ buildResource : false });
         // connecting to Build Menu
         if (this.props.building[model] === true) {
@@ -173,7 +198,7 @@ class PlayerBase extends Component {
                 </div>
                 <div id="center">
                     <div id="resourcesLeft">
-                        <a>supplies</a>
+                        <a>Supplies</a>
                         <div>
                             <img src="./assets/wood.svg"></img>
                             {this.props.wood}
@@ -258,6 +283,7 @@ class PlayerBase extends Component {
                             <div id="topM" onClick={() => this.Build( 'tm' )}>
                                 <img src={this.asset('tm')}></img>
                             </div>
+                            {/* the Capital of your Outpost */}
                             <div id="middleM" onClick={() => this.Build( 'mm' )}>
                                 {/* <img src={this.asset('mm')}></img> */}
                                 mm
