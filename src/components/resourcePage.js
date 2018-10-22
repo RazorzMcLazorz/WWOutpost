@@ -56,15 +56,48 @@ completeUpgrade() {
         this.props.changeState({ metalAdd: 10 * object['metalTier'] });
         this.props.changeState({ stoneAdd: 10 * object['stoneTier'] });
         this.props.changeState({ oilAdd: 10 * object['oilTier'] });
+        // text modifier
+        this.props.changeState({ text1 : 'Successfully' });
+        this.props.changeState({ text2 : 'Upgraded!' });
     }
     else if (tier === 5) {
-        this.props.changeState({ cost : 'max level' });
+        this.props.changeState({ text1 : 'This Building is' });
+        this.props.changeState({ text2 : 'Max Level already' });
         console.log('cant upgrade anymore its maxed out');
     }
     else {
-        this.props.changeState({ cost : 'no supplies' });
+        this.props.changeState({ text1 : 'Not Enough Supplies' });
+        this.props.changeState({ text2 : 'to upgrade.' });
         console.log('not enough resources');
     }
+}
+
+// supplies
+supplies(resource) {
+    let temp2 = 'displayed'
+    this.props.changeState({ text1 : resource });
+    this.props.changeState({ text2 : temp2 });
+}
+
+// Production Supply
+shownText(resource) {
+    let temp = resource + ' production plots allow';
+    let temp2 = 'for increased resource each round.'
+    this.props.changeState({ text1 : temp });
+    this.props.changeState({ text2 : temp2 });
+}
+
+// Upgrade Tab
+UT() {
+    this.props.changeState({ text1 : 'Upgrade Tab displays' });
+    this.props.changeState({ text2 : 'upgrade info like cost.' });
+}
+
+// what tier is the upgrade
+tierUpgrade() {
+    let temp = this.props.supTier + ' of 5 tier building';
+    this.props.changeState({ text1 : 'this Resource Building is a' });
+    this.props.changeState({ text2 : temp });
 }
 
 // When any resource that can be upgraded is CLicked it will call this function
@@ -88,27 +121,32 @@ upgrade(resource) {
     this.props.changeState({ cost : 'cost' });
 }
 
+// return to Base
+returnToBase() {
+    this.props.changeState({ text1 : 'Welcome Back to' });
+    this.props.changeState({ text2 : 'your OutPost Sir.' });
+}
+
     render() {
         return (
             <div className='resourcePage'>
                 {/* resources on top */}
                 <div id="resTop">
-                {/* stone */}
-                    <div id="stoneTab" onClick={() => this.upgrade('stone')}>
-                        Stone + {this.props.stoneAdd}
-                    </div>
-                {/* wood */}
-                    <div id="woodTab" onClick={() => this.upgrade('wood')}>
-                        Wood + {this.props.woodAdd}
-                    </div>
+                {/* Text */}
+                <a>
+                    {this.props.text1}
+                </a>
+                <a>
+                    {this.props.text2}
+                </a>
                 </div>
                 <div id="resMid">
                     <div id="upgradeTab">
                     {/* upgrade tab to left, only shows when a resource that can be upgraded is clicked */}
                         {this.props.upgradeSupplies ?
                         <div id="upgradeTabHover">
-                            <a>Upgrade Tab</a>
-                            <div className="tb">ima {this.props.supTier}/5 upgrade</div>
+                            <a onMouseOver={() => this.UT()}>Upgrade Tab</a>
+                            <div className="tb" onMouseOver={() => this.tierUpgrade()}>ima {this.props.supTier}/5 upgrade</div>
                             <div id="cost">
                                 <a>{this.props.cost}</a>
                                 <div>
@@ -139,47 +177,55 @@ upgrade(resource) {
                     </div>
                     {/* resources in the center */}
                     <div id="resRight">
+                    {/* stone */}
+                        <div id="stoneTab" onClick={() => this.upgrade('stone')} onMouseOver={() => this.shownText('Stone')}>
+                            Stone + {this.props.stoneAdd}
+                        </div>
+                    {/* wood */}
+                        <div id="woodTab" onClick={() => this.upgrade('wood')} onMouseOver={() => this.shownText('Wood')}>
+                            Wood + {this.props.woodAdd}
+                        </div>
                     {/* oil */}
-                        <div id="oilTab" onClick={() => this.upgrade('oil')}>
+                        <div id="oilTab" onClick={() => this.upgrade('oil')} onMouseOver={() => this.shownText('Oil')}>
                             Oil + {this.props.oilAdd}
                         </div>
                     {/* food */}
-                        <div id="foodTab" onClick={() => this.upgrade('food')}>
+                        <div id="foodTab" onClick={() => this.upgrade('food')} onMouseOver={() => this.shownText('Food')}>
                             Food + {this.props.foodAdd}
                         </div>
                     </div>
                 {/* displays the current resources of the player stockpile */}
                     <div id="resourceRight">
                         <a>supplies</a>
-                        <div>
+                        <div onMouseOver={() => this.supplies('Wood')}>
                             <img src="./assets/wood.svg"></img>
                             {this.props.wood}
                         </div>
-                        <div>
+                        <div onMouseOver={() => this.supplies('Food')}>
                             <img src="./assets/food.svg"></img>
                             {this.props.food}
                         </div>
-                        <div>
+                        <div onMouseOver={() => this.supplies('Metal')}>
                             <img src="./assets/metal.svg"></img>
                             {this.props.metal}
                         </div>
-                        <div>
+                        <div onMouseOver={() => this.supplies('Stone')}>
                             <img src="./assets/stone.svg"></img>
                             {this.props.stone}
                         </div>
-                        <div>
+                        <div onMouseOver={() => this.supplies('Oil')}>
                             <img src="./assets/oil.svg"></img>
                             {this.props.oil}
                         </div>
-                        <div>
+                        <div onMouseOver={() => this.supplies('Population')}>
                             <img src="./assets/pop.svg"></img>
                             {this.props.pop}
                         </div>
-                        <div>
+                        <div onMouseOver={() => this.supplies('Research')}>
                             <img src="./assets/res.svg"></img>
                             {this.props.res}
                         </div>
-                        <div>
+                        <div onMouseOver={() => this.supplies('Troops')}>
                             <img src="./assets/troop.svg"></img>
                             {this.props.troop}
                         </div>
@@ -188,11 +234,11 @@ upgrade(resource) {
                 {/* bottom tab */}
                 <div id="resBott">
                 {/* allows player to return to his/her base */}
-                    <Link to="/PlayerBase" id="resourceBack">
+                    <Link to="/PlayerBase" id="resourceBack" onClick={() => this.returnToBase()}>
                         Base
                     </Link>
                 {/* metal */}
-                    <div id="metalTab" onClick={() => this.upgrade('metal')}>
+                    <div id="metalTab" onClick={() => this.upgrade('metal')}  onMouseOver={() => this.shownText('metal')}>
                         Metal + {this.props.metalAdd}
                     </div>
                 </div>

@@ -5,28 +5,21 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+    animation: hop linear .1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
     #resTop {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 20%;
         width: 100vw;
-        background-color: blue;
-        div {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            background-color: yellow;
-            height: 50px;
-            width: 100px;
-            margin: 10px;
-        }
-        #stoneTab {
-            
-        }
-        #woodTab {
+        a {
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-color: gold;
+            padding: 3px;
         }
     }
     #resMid {
@@ -43,7 +36,6 @@
             align-items: center;
             height: 100%;
             width: 150px;
-            background-color: green;
             #upgradeTabHover {
                 display: flex;
                 flex-direction: column;
@@ -105,16 +97,17 @@
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
-                background-color: yellow;
+                background-color: orange;
                 height: 50px;
                 width: 100px;
                 margin: 10px;
+                margin-top: 35px;
+                margin-bottom: 35px;
             }
             #oilTab {
 
             }
             #foodTab {
-                margin-top: 50%;
             }
         }
         #resourceRight {
@@ -151,13 +144,12 @@
         align-items: center;
         height: 20%;
         width: 100vw;
-        background-color: blue;
         #metalTab {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            background-color: yellow;
+            background-color: orange;
             height: 50px;
             width: 100px;
             margin: 10px;
@@ -167,11 +159,19 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            background-color: yellow;
+            background-color: orange;
             height: 50px;
             width: 60px;
             border-radius: 25px;
             margin-right: 20%;
         }
+    }
+}
+@keyframes hop{
+    0% {
+        transform:  translate(-300px,0px)  ;
+    }
+    100% {
+        transform:  translate(0px,0px)  ;
     }
 }
