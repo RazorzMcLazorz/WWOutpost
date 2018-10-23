@@ -235,7 +235,7 @@ returnToBase() {
                 <div id="resBott">
                 {/* allows player to return to his/her base */}
                     <Link to="/PlayerBase" id="resourceBack" onClick={() => this.returnToBase()}>
-                        Base
+                        Return to Base
                     </Link>
                 {/* metal */}
                     <div id="metalTab" onClick={() => this.upgrade('metal')}  onMouseOver={() => this.shownText('metal')}>

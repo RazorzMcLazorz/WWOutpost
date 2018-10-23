@@ -1,0 +1,21 @@
+// swipe animation between pages
+@keyframes hop{
+    0% {
+        transform:  translate(-300px,0px)  ;
+    }
+    100% {
+        transform:  translate(0px,0px)  ;
+    }
+}
+// hover effect on buttons
+@keyframes hover{
+    0% {
+        transform:  translate(0px,0px)  ;
+    }
+      4% {
+        transform:  translate(0px,-3px)  ;
+    }
+      100% {
+        transform:  translate(0px,-3px)  ;
+    }
+}

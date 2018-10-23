@@ -7,6 +7,9 @@ const unl = 'unlock';
 
 class TechnologyMenu extends Component {
 
+
+
+    // changing the entire Technology tab location
     Unlock (type, tier) {
         if (this.props.unlocklocks[unl + type + tier] === 'unlock') {
             let object = this.props.research;

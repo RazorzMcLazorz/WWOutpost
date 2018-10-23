@@ -1,8 +1,13 @@
+@import 'animate';
+
 .playerBase {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: hop linear .1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
     #text {
         display: flex;
         flex-direction: row;

@@ -1,9 +1,14 @@
+@import 'animate';
+
 .technologyMenu {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
+    animation: hop linear .1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
     #techTab {
         display: flex;
         flex-direction: column;
