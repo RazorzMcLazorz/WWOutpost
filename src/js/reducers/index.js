@@ -116,6 +116,8 @@ const initialState = {
             unlockfactoryt2 : 'locked',
             unlockfactoryt3 : 'locked',
         },
+        prevUnlock : '',
+        prevUnlockCost : 0,
         wood : 30,
         food : 30,
         metal: 5,
