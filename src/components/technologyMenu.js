@@ -28,6 +28,11 @@ class TechnologyMenu extends Component {
         }
     }
 
+    BackToBase() {
+        this.props.changeState({ text1 : 'After Every Round Progress on' });
+        this.props.changeState({ text2 : 'Research will be added.' });
+    }
+
     render() {
         return (
             <div className='technologyMenu'>
@@ -123,7 +128,7 @@ class TechnologyMenu extends Component {
                     </div>
                 </div>
 
-                <Link to="/PlayerBase" id="backTech">
+                <Link to="/PlayerBase" id="backTech" onClick={() => this.BackToBase()}>
                     back
                 </Link>
             </div>

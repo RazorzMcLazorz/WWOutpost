@@ -175,6 +175,11 @@ class PlayerBase extends Component {
         }
     }
 
+    TechText() {
+        this.props.changeState({ text1 : 'Tech Tab allows for upgrades to your' });
+        this.props.changeState({ text2 : 'current buildings and to add more.' });
+    }
+
     render() {
         return (
             <div className='playerBase'>
@@ -399,7 +404,7 @@ class PlayerBase extends Component {
                     <Link to="/NextRound" id="nextRound" className="bTab">
                         Next Round
                     </Link>
-                    <Link to="/TechnologyMenu" id="techTab" className="bTab">
+                    <Link to="/TechnologyMenu" id="techTab" className="bTab" onClick={() => this.TechText()}>
                         Tech
                     </Link>
                     <Link to="/ResourcePage" id="resourceTab" className="bTab">

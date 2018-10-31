@@ -127,7 +127,7 @@ class NextRound extends Component {
             this.props.changeState({ gameOver : true });
         }
 
-        // ressearch added
+        // research added
         this.props.changeState({ resPutIn : this.props.resPutIn + this.props.resAdd });
         this.Research();
     }
