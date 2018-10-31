@@ -73,7 +73,6 @@ const initialState = {
             'bm' : 't1',
             'bm1' : 't1',
             'bm2' : 't1',
-        
             'tr2' : 't1',
             'tr1' : 't1',
             'tr' : 't1',
@@ -82,6 +81,7 @@ const initialState = {
             'br1' : 't1',
             'br2' : 't1',
         },
+        // true false
         research : {
             'homet1' : true,
             'campt1' : true,
@@ -99,6 +99,7 @@ const initialState = {
             'schoolt3' : false,
             'factoryt3' : false,
         },
+        // Research on whats unlocked
         unlocklocks : {
             unlockhomet1 : '',
             unlockhomet2 : 'unlock',
@@ -116,15 +117,24 @@ const initialState = {
             unlockfactoryt2 : 'locked',
             unlockfactoryt3 : 'locked',
         },
+        // whats being unlocked
+        pUType : '',
         prevUnlock : '',
+        pUTier : '',
+        // whats being unlocked cost
         prevUnlockCost : 0,
+        // how much research is put towards upgrading
+        resPutIn : 0,
+        // Research
+        res : 5,
+        resAdd : 0,
+
         wood : 30,
         food : 30,
         metal: 5,
         stone : 15,
         oil : 0,
         pop : 0,
-        res : 5,
         troop : 32,
 
         woodAdd : 10,

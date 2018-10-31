@@ -34,7 +34,17 @@ class TechnologyMenu extends Component {
                 <div id="techTab">
                     Tech Tab
                 </div>
-                
+                {/* Whats being unlocked */}
+                <div>
+                    unlocking {this.props.prevUnlock}
+                </div>
+                {/* TEXT */}
+                <div>
+                    {this.props.text1}
+                </div>
+                <div>
+                    {this.props.text2}
+                </div>
                 {/* Technology Tab */}
                 <div id="tech">
                     <div className="techSub">
@@ -44,7 +54,7 @@ class TechnologyMenu extends Component {
                         <div className="technologys" onClick={() => this.Unlock('home', 't1', 1)}>
                             {this.props.unlocklocks[unl + 'home' + 't1']} Tents
                         </div>
-                        <div className="technologys" onClick={() => this.Unlock('home', 't2', 2)}>
+                        <div className="technologys" onClick={() => this.Unlock('home', 't2', 6)}>
                             {this.props.unlocklocks[unl + 'home' + 't2']} Cabins
                         </div>
                         <div className="technologys" onClick={() => this.Unlock('home', 't3', 3)}>

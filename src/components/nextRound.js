@@ -11,6 +11,20 @@ function ourRandomRange(ourMin, ourMax) {
 
 class NextRound extends Component {
     
+    // Is Research complete?
+    Research() {
+        if (this.props.resPutIn >= this.props.prevUnlockCost) {
+            console.log('research complete');
+            // changes research to true
+            let object = this.props.research;
+            object[this.props.pUType] = true;
+            this.props.changeState({ research: object });
+        }
+        else {
+            console.log('research not complete');
+        }
+    }
+
     // the more advanced tropp deployment
     Troop13(arg) {
         if (arg === 'reset') {
@@ -112,7 +126,10 @@ class NextRound extends Component {
         if (this.props.round === 12) {
             this.props.changeState({ gameOver : true });
         }
-        
+
+        // ressearch added
+        this.props.changeState({ resPutIn : this.props.resPutIn + this.props.resAdd });
+        this.Research();
     }
 
     render() {
