@@ -132,18 +132,18 @@ class TechnologyMenu extends Component {
                         <div className="techType">
                             Factory Tech
                         </div>
-                        <div className="technologys" onClick={() => this.Unlock('factory', 't1', 6)}>
+                        <div className="technologys" onClick={() => this.Unlock('factory', 't1', 6, 'Basic Weapons')}>
                             {this.props.unlocklocks[unl + 'factory' + 't1']} Basic Weapons
                             <img src="./assets/res.svg"></img>
                             6
                         </div>
-                        <div className="technologys" onClick={() => this.Unlock('factory', 't2', 14)}>
+                        <div className="technologys" onClick={() => this.Unlock('factory', 't2', 14, 'Advanced Weapons')}>
                             {this.props.unlocklocks[unl + 'factory' + 't2']} Advanced Weapons
                             <img src="./assets/res.svg"></img>
                             14
                         </div>
-                        <div className="technologys" onClick={() => this.Unlock('factory', 't3', 21)}>
-                            {this.props.unlocklocks[unl + 'factory' + 't3']} Vehicle Facotory
+                        <div className="technologys" onClick={() => this.Unlock('factory', 't3', 21, 'Vehicle Factory')}>
+                            {this.props.unlocklocks[unl + 'factory' + 't3']} Vehicle Factory
                             <img src="./assets/res.svg"></img>
                             21
                         </div>
