@@ -121,13 +121,14 @@ const initialState = {
         pUType : '',
         prevUnlock : '',
         pUTier : '',
+        pUName : '',
         // whats being unlocked cost
         prevUnlockCost : 0,
         // how much research is put towards upgrading
         resPutIn : 0,
         // Research
         res : 5,
-        resAdd : 0,
+        resAdd : 5,
 
         wood : 30,
         food : 30,

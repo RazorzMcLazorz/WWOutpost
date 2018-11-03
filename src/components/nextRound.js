@@ -19,6 +19,30 @@ class NextRound extends Component {
             let object = this.props.research;
             object[this.props.pUType] = true;
             this.props.changeState({ research: object });
+            
+            object = this.props.unlocklocks;
+
+            if (this.props.pUTier === 't1') {
+                // first Tech
+                object['unlock' + this.props.pUtype] = '';
+                object['unlock' + this.props.pUName + 't2'] = 'unlock';
+                console.log('FT');
+            }
+            else if (this.props.pUTier === 't2') {
+                // second Tech
+                object['unlock' + this.props.pUtype] = '';
+                object['unlock' + this.props.pUName + 't3'] = 'unlock';
+                console.log('ST');
+            }
+            else if (this.props.pUTier === 't3') {
+                // Third Tech
+                object['unlock' + this.props.pUtype] = '';
+                console.log('TT');
+            }
+            else {
+                console.log('Tech change didnt work');
+            }
+
         }
         else {
             console.log('research not complete');
