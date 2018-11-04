@@ -124,12 +124,10 @@ const initialState = {
         pUName : '',
         // whats being unlocked cost
         prevUnlockCost : 0,
-        // how much research is put towards upgrading
-        resPutIn : 0,
         // Research
         res : 5,
-        resAdd : 5,
-
+        resAdd : 6,
+        // Total Resources
         wood : 30,
         food : 30,
         metal: 5,
@@ -137,7 +135,7 @@ const initialState = {
         oil : 0,
         pop : 0,
         troop : 32,
-
+        // Resources Added Each Round
         woodAdd : 10,
         foodAdd : 10,
         metalAdd: 10,

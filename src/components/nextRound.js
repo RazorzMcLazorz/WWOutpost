@@ -13,7 +13,7 @@ class NextRound extends Component {
     
     // Is Research complete?
     Research() {
-        if (this.props.resPutIn >= this.props.prevUnlockCost) {
+        if (this.props.res >= this.props.prevUnlockCost) {
             console.log('research complete');
             // changes research to true
             let object = this.props.research;
@@ -42,7 +42,9 @@ class NextRound extends Component {
             else {
                 console.log('Tech change didnt work');
             }
-
+        this.props.changeState({ res : this.props.res - this.props.prevUnlockCost });
+        this.props.changeState({ pUTier : '' });
+        this.props.changeState({ prevUnlockCost : 0 });
         }
         else {
             console.log('research not complete');
@@ -152,7 +154,7 @@ class NextRound extends Component {
         }
 
         // research added
-        this.props.changeState({ resPutIn : this.props.resPutIn + this.props.resAdd });
+        this.props.changeState({ res : this.props.res + this.props.resAdd });
         this.Research();
     }
 

@@ -247,6 +247,9 @@ class PlayerBase extends Component {
                             <img src="./assets/res.svg"></img>
                             {this.props.res}
                         </div>
+                        <a>
+                            + {this.props.resAdd}
+                        </a>
                         <div>
                             <img src="./assets/troop.svg"></img>
                             {this.props.troop}
