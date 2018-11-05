@@ -99,6 +99,8 @@ class PlayerBase extends Component {
         else {
             console.log('broke');
             this.props.changeState({ buildResource : true });
+            this.props.changeState({ text1 : 'Not Researched or' });
+            this.props.changeState({ text2 : 'Not enough supplies' });
         }
     }
 
@@ -180,6 +182,11 @@ class PlayerBase extends Component {
         this.props.changeState({ text2 : 'current buildings and to add more.' });
     }
 
+    PointOut(type) {
+        this.props.changeState({ text1 : 'This is your ' + type + ' resource' });
+        this.props.changeState({ text2 : 'the + is what you gain per round' });
+    }
+
     render() {
         return (
             <div className='playerBase'>
@@ -204,53 +211,53 @@ class PlayerBase extends Component {
                 <div id="center">
                     <div id="resourcesLeft">
                         <a>Supplies</a>
-                        <div>
+                        <div onClick={() => this.PointOut('Wood')}>
                             <img src="./assets/wood.svg"></img>
                             {this.props.wood}
                         </div>
-                        <a>
+                        <a onClick={() => this.PointOut('Wood')}>
                             + {this.props.woodAdd}
                         </a>
-                        <div>
+                        <div onClick={() => this.PointOut('Food')}>
                             <img src="./assets/food.svg"></img>
                             {this.props.food}
                         </div>
-                        <a>
+                        <a onClick={() => this.PointOut('Food')}>
                             + {this.props.foodAdd}
                         </a>
-                        <div>
+                        <div onClick={() => this.PointOut('Metal')}>
                             <img src="./assets/metal.svg"></img>
                             {this.props.metal}
                         </div>
-                        <a>
+                        <a onClick={() => this.PointOut('Metal')}>
                             + {this.props.metalAdd}
                         </a>
-                        <div>
+                        <div onClick={() => this.PointOut('Stone')}>
                             <img src="./assets/stone.svg"></img>
                             {this.props.stone}
                         </div>
-                        <a>
+                        <a onClick={() => this.PointOut('Stone')}>
                             + {this.props.stoneAdd}
                         </a>
-                        <div>
+                        <div onClick={() => this.PointOut('Oil')}>
                             <img src="./assets/oil.svg"></img>
                             {this.props.oil}
                         </div>
-                        <a>
+                        <a onClick={() => this.PointOut('Oil')}>
                             + {this.props.oilAdd}
                         </a>
-                        <div>
+                        <div onClick={() => this.PointOut('Population')}>
                             <img src="./assets/pop.svg"></img>
                             {this.props.pop}
                         </div>
-                        <div>
+                        <div onClick={() => this.PointOut('Research')}>
                             <img src="./assets/res.svg"></img>
                             {this.props.res}
                         </div>
-                        <a>
+                        <a onClick={() => this.PointOut('Research')}>
                             + {this.props.resAdd}
                         </a>
-                        <div>
+                        <div onClick={() => this.PointOut('Troop')}>
                             <img src="./assets/troop.svg"></img>
                             {this.props.troop}
                         </div>

@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 import * as actions from '../js/actions';
 
 class WarInfo extends Component {
+
+    AfterInfo() {
+        this.props.changeState({ text1 : 'Welcome to Round ' + this.props.round + ' of 12' });
+        this.props.changeState({ text2 : 'Click yellow to begin again.' });
+    }
+
     render() {
         return (
             <div className='warInfo'>
@@ -67,7 +73,7 @@ class WarInfo extends Component {
                 <Link to="/GameOver" className="wICont">
                     Continue
                 </Link> :
-                <Link to="/PlayerBase" className="wICont">
+                <Link to="/PlayerBase" className="wICont" onClick={() => this.AfterInfo()}>
                     Continue
                 </Link>}
             </div>
