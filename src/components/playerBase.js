@@ -187,6 +187,16 @@ class PlayerBase extends Component {
         this.props.changeState({ text2 : 'the + is what you gain per round' });
     }
 
+    ResourceSwap() {
+        this.props.changeState({ text1 : 'Welcome to the Resource Tab' });
+        this.props.changeState({ text2 : 'Click a Resource to begin' });
+    }
+
+    Capital() {
+        this.props.changeState({ text1 : 'Your Capital Building that' });
+        this.props.changeState({ text2 : 'gains research per round.' });
+    }
+
     render() {
         return (
             <div className='playerBase'>
@@ -299,9 +309,9 @@ class PlayerBase extends Component {
                                 <img src={this.asset('tm')}></img>
                             </div>
                             {/* the Capital of your Outpost */}
-                            <div id="middleM" onClick={() => this.Build( 'mm' )}>
+                            <div id="middleM" onClick={() => this.Capital()}>
                                 {/* <img src={this.asset('mm')}></img> */}
-                                mm
+                                HQ
                             </div>
                             <div id="bottomM" onClick={() => this.Build( 'bm' )}>
                                 <img src={this.asset('bm')}></img>
@@ -417,7 +427,7 @@ class PlayerBase extends Component {
                     <Link to="/TechnologyMenu" id="techTab" className="bTab" onClick={() => this.TechText()}>
                         Tech
                     </Link>
-                    <Link to="/ResourcePage" id="resourceTab" className="bTab">
+                    <Link to="/ResourcePage" id="resourceTab" className="bTab" onClick={() => this.ResourceSwap()}>
                         Resource
                     </Link>
                 </div>

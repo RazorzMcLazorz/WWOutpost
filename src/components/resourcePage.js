@@ -124,7 +124,7 @@ upgrade(resource) {
 // return to Base
 returnToBase() {
     this.props.changeState({ text1 : 'Welcome Back to' });
-    this.props.changeState({ text2 : 'your OutPost Sir.' });
+    this.props.changeState({ text2 : 'your OutPost' });
 }
 
     render() {
