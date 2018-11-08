@@ -205,6 +205,35 @@ class PlayerBase extends Component {
         this.props.changeState({capital: true});
     }
 
+    CapitalUpgrade() {
+        if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 1) {
+            console.log('Capital Upgrade Complete 2');
+            this.props.changeState({ capitalTier : 2 });
+        }
+        else if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 2) {
+            console.log('Capital Upgrade Complete 3');
+            this.props.changeState({ capitalTier : 3 });
+        }
+        else if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 3) {
+            console.log('Capital Upgrade Complete 4');
+            this.props.changeState({ capitalTier : 4 });
+        }
+        else if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 4) {
+            console.log('Capital Upgrade Complete 5');
+            this.props.changeState({ capitalTier : 5 });
+        }
+        else {
+            console.log('Capital Upgrade Failed');
+            this.props.changeState({ text1 : 'Cant Upgrade' });
+            if (this.props.capitalTier === 5) {
+                this.props.changeState({ text2 : 'Max Upgrade' });
+            }
+            else {
+                this.props.changeState({ text2 : 'Not Enough Resources' });
+            }
+        }
+    }
+
     render() {
         return (
             <div className='playerBase'>
@@ -434,9 +463,9 @@ class PlayerBase extends Component {
                         {this.props.capital ?
                         <div className="scroll">
                             <div>
-                                Tier {this.props.capitalTier}
+                                Tier {this.props.capitalTier}/5
                             </div>
-                            <div>
+                            <div onClick={() => this.CapitalUpgrade()}>
                                 Upgrade
                                 <div>
                                     <a><img src="./assets/wood.svg"></img> - 8</a>
