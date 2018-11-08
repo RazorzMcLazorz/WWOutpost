@@ -165,12 +165,14 @@ class PlayerBase extends Component {
             this.props.changeState({upgrade: true});
             this.props.changeState({build: false});
             this.props.changeState({upgradeConnect: model});
+            this.props.changeState({capital: false});
         }
         else if (this.props.building[model] === false) {
             console.log('Building Menu');
             this.props.changeState({ build: true });
             this.props.changeState({ upgrade: false });
             this.props.changeState({ buildConnect: model });
+            this.props.changeState({capital: false});
         }
         else {
             console.log('not working');
@@ -193,8 +195,14 @@ class PlayerBase extends Component {
     }
 
     Capital() {
+        // Text change
         this.props.changeState({ text1 : 'Your Capital Building that' });
-        this.props.changeState({ text2 : 'gains research per round.' });
+        this.props.changeState({ text2 : `gains ${this.props.resAdd} research per round.` });
+
+        // makes sure that its just Capital menu
+        this.props.changeState({upgrade: false});
+        this.props.changeState({build: false});
+        this.props.changeState({capital: true});
     }
 
     render() {
@@ -310,8 +318,7 @@ class PlayerBase extends Component {
                             </div>
                             {/* the Capital of your Outpost */}
                             <div id="middleM" onClick={() => this.Capital()}>
-                                {/* <img src={this.asset('mm')}></img> */}
-                                HQ
+                                <img src="assets\HQTent.png"></img>
                             </div>
                             <div id="bottomM" onClick={() => this.Build( 'bm' )}>
                                 <img src={this.asset('bm')}></img>
@@ -418,6 +425,29 @@ class PlayerBase extends Component {
                                 Destroy
                             </div>
                         </div> : ''}
+
+                        {/* Capital */}
+                        {this.props.capital ?
+                        <a className="buildMenuTitle">
+                            Capital
+                        </a> : ''}
+                        {this.props.capital ?
+                        <div className="scroll">
+                            <div>
+                                Tier {this.props.capitalTier}
+                            </div>
+                            <div>
+                                Upgrade
+                                <div>
+                                    <a><img src="./assets/wood.svg"></img> - 8</a>
+                                    <a><img src="./assets/food.svg"></img> - 5</a>
+                                    <a><img src="./assets/metal.svg"></img> - 7</a>
+                                    <a><img src="./assets/stone.svg"></img> - 4</a>
+                                    <a><img src="./assets/oil.svg"></img> - 3</a>
+                                    <a><img src="./assets/res.svg"></img> + 6</a>
+                                </div>
+                            </div>
+                        </div> : '' }
                     </div>
                 </div>
                 <div id="bottomTabs">

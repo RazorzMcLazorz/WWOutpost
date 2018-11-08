@@ -7,6 +7,11 @@ const initialState = {
         upgradeConnect : '',
         build : false,
         buildConnect : '',
+
+        // Capital
+        capital : false,
+        capitalTier  : 1,
+
         building : {
             'tl2' : false,
             'tl1' : false,
@@ -125,7 +130,7 @@ const initialState = {
         // whats being unlocked cost
         prevUnlockCost : 0,
         // Research
-        res : 5,
+        res : 0,
         resAdd : 6,
         // Total Resources
         wood : 30,
