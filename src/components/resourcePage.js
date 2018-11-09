@@ -118,7 +118,6 @@ upgrade(resource) {
     this.props.changeState({supCost5 : i });
     i = this.props.Tier[resource + 'Tier'];
     this.props.changeState({ supTier : i });
-    this.props.changeState({ cost : 'cost' });
 }
 
 // return to Base
@@ -148,7 +147,7 @@ returnToBase() {
                             <a onMouseOver={() => this.UT()}>Upgrade Tab</a>
                             <div className="tb" onMouseOver={() => this.tierUpgrade()}>ima {this.props.supTier}/5 upgrade</div>
                             <div id="cost">
-                                <a>{this.props.cost}</a>
+                                <a>cost</a>
                                 <div>
                                     <img src="./assets/wood.svg"></img>
                                     {this.props.supCost1}

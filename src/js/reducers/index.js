@@ -2,16 +2,22 @@
 import { ADD_ARTICLE, CHANGE_STATE } from "../constants/action-types";
 
 const initialState = {
+        // Build Menu in Base
         buildMenuValue : '',
-        upgrade : false,
-        upgradeConnect : '',
         build : false,
+
+        // Upgrade Menu in Base
+        upgradeConnect : '',
+        upgrade : false,
+
+        // connects the change of the building
         buildConnect : '',
 
         // Capital
         capital : false,
         capitalTier  : 1,
 
+        // Is Somthing built on it?
         building : {
             'tl2' : false,
             'tl1' : false,
@@ -24,7 +30,6 @@ const initialState = {
             'tm2' : false,
             'tm1' : false,
             'tm' : false,
-            'mm' : true,
             'bm' : false,
             'bm1' : false,
             'bm2' : false,
@@ -37,6 +42,8 @@ const initialState = {
             'br1' : false,
             'br2' : false,
         },
+
+        // Whats Built on it?
         built : {
             'tl2' : '',
             'tl1' : '',
@@ -49,7 +56,6 @@ const initialState = {
             'tm2' : '',
             'tm1' : '',
             'tm' : '',
-            'mm' : '',
             'bm' : '',
             'bm1' : '',
             'bm2' : '',
@@ -62,6 +68,8 @@ const initialState = {
             'br1' : '',
             'br2' : '',
         },
+
+        // The Tier of whats built on it?
         builtTier : {
             'tl2' : 't1',
             'tl1' : 't1',
@@ -74,7 +82,6 @@ const initialState = {
             'tm2' : 't1',
             'tm1' : 't1',
             'tm' : 't1',
-            'mm' : 't1',
             'bm' : 't1',
             'bm1' : 't1',
             'bm2' : 't1',
@@ -86,6 +93,7 @@ const initialState = {
             'br1' : 't1',
             'br2' : 't1',
         },
+
         // true false
         research : {
             'homet1' : true,
@@ -147,7 +155,8 @@ const initialState = {
         stoneAdd : 10,
         oilAdd : 10,
         troopAdd : 10,
-
+        
+        // Resource Production Tier
         Tier : {
             stoneTier : 1,
             woodTier : 1,
@@ -155,38 +164,61 @@ const initialState = {
             foodTier : 1,
             metalTier : 1,
         },
+
         buildResource : false,
+
+        // Lets the User Know whats happening
         text1 : '...',
         text2 : '...',
+
         troopAll : true,
+
+        // What Round
         round : 1,
-        unlock1 : '',
-        unlock2 : '',
-        unlock3 : '',
+
+        // Upgrade Resource On or Off
         upgradeSupplies : false,
+
+        // Resource Individual cost
         supCost1 : 0,
         supCost2 : 0,
         supCost3 : 0,
         supCost4 : 0,
         supCost5 : 0,
+
+        // Resource Production Tier
         supTier : 1,
+
+        // Resource Whats Selected
         resourceSelected : '',
-        cost : 'cost',
+
+        // Win or Loose?
         winLoose  : 'win/loose',
+        // All that have survived
         survived  : 0,
+        // How many people died during battle
         deaths : 0,
+
         // score of the game what the High score is
+        // Whats going to be added
         scoreAdd : 0,
+        // Total Score
         score : 0,
+
+        // What Resources the user found during a battle
         woodGained : 0,
         foodGained : 0,
         metalGained : 0,
         stoneGained : 0,
         oilGained : 0,
+
+        // How many Wars the user has won
         battleWon : 0,
+        // Is the GameOver
         gameOver : false,
 };
 
+// Sends Out the Props and Updates the props
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_ARTICLE:

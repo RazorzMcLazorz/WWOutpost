@@ -1,9 +1,30 @@
-const funct = () => {
-    console.log('')
-    var i = 0;
-}
+// import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import * as actions from '../js/actions';
 
-export var x = 1;
+// class pBFunction extends Component {
 
-export default funct;
+//     render() {
+//         return (
+//             <div>
+//             </div>
+//         );
+//     }
+// }
 
+// const mapStateToProps = (state) => {
+//     return state
+// }
+
+// PBFunction = connect(mapStateToProps, actions)(PBFunction);
+
+// export default PBFunction;
+
+// const funct = () => {
+//     console.log('')
+//     var i = 0;
+// }
+
+// export var x = 1;
+
+// export default funct;
