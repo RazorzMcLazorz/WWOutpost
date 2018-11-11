@@ -12,9 +12,25 @@ const board = {
     'school' : [1, 0, 0, 4, 0, 0, 5],
     'factory' : [1, 0, 2, 3, 2, 0, 0],
 };
+// Tier 2 Upgrade and refund prices
+const TierTwo = {
+    home : [10, 6, 2, 0, 0],
+    store : [10, 12, 8, 4, 5],
+    camp : [9, 4, 6, 6, 3],
+    school : [6, 10, 5, 3, 2],
+    factory : [6, 0, 10, 8, 8]
+};
+// Tier 3 Upgrade and refund prices
+const TierThree = {
+    home : [2, 9, 4, 15, 1],
+    store : [11, 18, 10, 8, 8],
+    camp : [11, 6, 12, 10, 6],
+    school : [12, 12, 12, 8, 6],
+    factory : [15, 0, 21, 10, 15]
+}
 
 class PlayerBase extends Component {
-    
+
 // makes sure that the img is correct
     asset(arg) {
         if (this.props.built[arg]) {
