@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './building';
 import funct, { x } from './building';
 import { connect } from 'react-redux';
 import * as actions from '../js/actions';

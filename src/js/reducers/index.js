@@ -94,6 +94,20 @@ const initialState = {
             'br2' : 't1',
         },
 
+        // Upgrade price per building
+        BUFood : 0,
+        BUWood : 0,
+        BUMetal : 0,
+        BUStone : 0,
+        BUOil : 0,
+
+        // Upgrade Benefits
+        BUPop : 0,
+        BUPopM : 0,
+        BUBattleSurvive : 0,
+        BUResearch : 0,
+        BUBattleWining : 0,
+
         // true false
         research : {
             'homet1' : true,

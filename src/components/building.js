@@ -1,30 +1,17 @@
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import * as actions from '../js/actions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../js/actions';
 
-// class pBFunction extends Component {
+class PBFunction extends Component {
+    Funct() {
+        console.log('I transfered');
+    }
+}
 
-//     render() {
-//         return (
-//             <div>
-//             </div>
-//         );
-//     }
-// }
+const mapStateToProps = (state) => {
+    return state
+}
 
-// const mapStateToProps = (state) => {
-//     return state
-// }
+PBFunction = connect(mapStateToProps, actions)(PBFunction);
 
-// PBFunction = connect(mapStateToProps, actions)(PBFunction);
-
-// export default PBFunction;
-
-// const funct = () => {
-//     console.log('')
-//     var i = 0;
-// }
-
-// export var x = 1;
-
-// export default funct;
+export default PBFunction;

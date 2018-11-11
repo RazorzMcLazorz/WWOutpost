@@ -19,7 +19,7 @@ class PlayerBase extends Component {
     asset(arg) {
         if (this.props.built[arg]) {
             arg = this.props.built[arg] + this.props.builtTier[arg];
-           return arg = `./assets/${arg}.png`; 
+           return arg = `./assets/${arg}.png`;
             // console.log(arg);
         }
         else {
@@ -233,6 +233,8 @@ class PlayerBase extends Component {
             }
         }
     }
+
+    
 
     render() {
         return (
@@ -449,6 +451,20 @@ class PlayerBase extends Component {
                         <div className="scroll">
                             <div>
                                 Upgrade
+                                <div>
+                                    <a><img src="./assets/wood.svg"></img> - {this.props.BUFood}</a>
+                                    <a><img src="./assets/food.svg"></img> - {this.props.BUWood}</a>
+                                    <a><img src="./assets/metal.svg"></img> - {this.props.BUMetal}</a>
+                                    <a><img src="./assets/stone.svg"></img> - {this.props.BUStone}</a>
+                                    <a><img src="./assets/oil.svg"></img> - {this.props.BUOil}</a>
+                                </div>
+                                <div>
+                                    <a><img src="./assets/pop.svg"></img> + {this.props.BUPop}</a>
+                                    <a><img src="./assets/pop.svg"></img> + {this.props.BUPopM}%</a>
+                                    <a><img src="./assets/troop.svg"></img> + {this.props.BUBattleSurvive}%</a>
+                                    <a><img src="./assets/res.svg"></img> + {this.props.BUResearch}</a>
+                                    <a><img src="./assets/flag.svg"></img> + {this.props.BUBattleWining}%</a>
+                                </div>
                             </div>
                             <div onClick={() => this.Deconstruct()}>
                                 Destroy
