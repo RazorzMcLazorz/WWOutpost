@@ -31,9 +31,9 @@ const TierThree = {
 // type of upgrade
 const TypeUpgrade = {
     home : ['cabin', 'brick'],
-    store : ['dinner', 'sMarket'],
-    camp : ['militaryBase', 'airField'],
-    school : ['publicSchool', 'university'],
+    store : ['dinner', 'market'],
+    camp : ['military', 'air'],
+    school : ['public', 'university'],
     factory : ['advanced', 'vehicle']
 }
 
@@ -181,6 +181,8 @@ class PlayerBase extends Component {
     Build (model) {
         this.props.changeState({ text1 : 'The Build Menu allows you to' });
         this.props.changeState({ text2 : 'build buildings for population' });
+        // connects whats selected to global variable
+        this.props.changeState({ BUModel : model });
 
         this.props.changeState({ buildResource : false });
         // connecting to Build Menu
@@ -261,6 +263,19 @@ class PlayerBase extends Component {
     Upgrader() {
         this.props.changeState({ text1 : 'This Upgrades what' });
         this.props.changeState({ text2 : 'Building is Selected' });
+        let type = this.props.BUModel
+        console.log(type + ' var');
+        console.log(this.props.BUModel + ' redux');
+        if (this.props.builtTier[type] === 't1') {
+            console.log('t1 selected');
+            
+        }
+        else if (this.props.builtTier[type] === 't2') {
+            console.log('t2 selected');
+        }
+        else {
+
+        }
     }
 
     render() {

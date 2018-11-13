@@ -94,6 +94,9 @@ const initialState = {
             'br2' : 't1',
         },
 
+        // Upgrade type being used to upgrade with
+        BUModel : '',
+
         // Upgrade price per building
         BUFood : 0,
         BUWood : 0,
