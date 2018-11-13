@@ -185,6 +185,20 @@ class PlayerBase extends Component {
         this.props.changeState({ BUModel : model });
 
         this.props.changeState({ buildResource : false });
+
+        // reset price variables
+        this.props.changeState({ BUFood : 0 });
+        this.props.changeState({ BUWood : 0 });
+        this.props.changeState({ BUMetal : 0 });
+        this.props.changeState({ BUStone : 0 });
+        this.props.changeState({ BUOil : 0 });
+        // reset bonus variables
+        this.props.changeState({ BUPop : 0 });
+        this.props.changeState({ BUPopM : 0 });
+        this.props.changeState({ BUBattleSurvive : 0 });
+        this.props.changeState({ BUResearch : 0 });
+        this.props.changeState({ BUBattleWining : 0 });
+        let cost = '';
         // connecting to Build Menu
         if (this.props.building[model] === true) {
             console.log('Upgrade Menu');
@@ -192,6 +206,20 @@ class PlayerBase extends Component {
             this.props.changeState({build: false});
             this.props.changeState({upgradeConnect: model});
             this.props.changeState({capital: false});
+            let type = this.props.built[this.props.BUModel];
+            console.log(type + ' Build tab upgrade time');
+            
+            if (this.props.builtTier[this.props.BUModel] === 't1') {
+                cost = TierTwo[type];
+            }
+            else {
+                cost = TierThree[type];
+            }
+            this.props.changeState({ BUFood : cost[0] });
+            this.props.changeState({ BUWood : cost[1] });
+            this.props.changeState({ BUMetal : cost[2] });
+            this.props.changeState({ BUStone : cost[3] });
+            this.props.changeState({ BUOil : cost[4] });
         }
         else if (this.props.building[model] === false) {
             console.log('Building Menu');
@@ -199,6 +227,7 @@ class PlayerBase extends Component {
             this.props.changeState({ upgrade: false });
             this.props.changeState({ buildConnect: model });
             this.props.changeState({capital: false});
+
         }
         else {
             console.log('not working');
@@ -263,14 +292,15 @@ class PlayerBase extends Component {
     Upgrader() {
         this.props.changeState({ text1 : 'This Upgrades what' });
         this.props.changeState({ text2 : 'Building is Selected' });
-        let type = this.props.BUModel
-        console.log(type + ' var');
+        let locate = this.props.BUModel
+        let type = this.props.built[locate];
+        console.log(locate + ' var');
         console.log(this.props.BUModel + ' redux');
-        if (this.props.builtTier[type] === 't1') {
+        if (this.props.builtTier[locate] === 't1') {
             console.log('t1 selected');
-            
+            console.log(type);
         }
-        else if (this.props.builtTier[type] === 't2') {
+        else if (this.props.builtTier[locate] === 't2') {
             console.log('t2 selected');
         }
         else {
