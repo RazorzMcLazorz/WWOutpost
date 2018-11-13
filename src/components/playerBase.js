@@ -4,6 +4,8 @@ import './building';
 import { connect } from 'react-redux';
 import * as actions from '../js/actions';
 
+let BUModel = '';
+
 // board costs: wood refund [0], food refund [1], metal refund [2], stone refund [3], oil refund [4], population [5], research [6]
 const board = {
     'home' : [3, 2, 0, 0, 0, 10, 0],
@@ -182,7 +184,7 @@ class PlayerBase extends Component {
         this.props.changeState({ text1 : 'The Build Menu allows you to' });
         this.props.changeState({ text2 : 'build buildings for population' });
         // connects whats selected to global variable
-        this.props.changeState({ BUModel : model });
+        BUModel = model;
 
         this.props.changeState({ buildResource : false });
 
@@ -206,10 +208,10 @@ class PlayerBase extends Component {
             this.props.changeState({build: false});
             this.props.changeState({upgradeConnect: model});
             this.props.changeState({capital: false});
-            let type = this.props.built[this.props.BUModel];
+            let type = this.props.built[BUModel];
             console.log(type + ' Build tab upgrade time');
             
-            if (this.props.builtTier[this.props.BUModel] === 't1') {
+            if (this.props.builtTier[BUModel] === 't1') {
                 cost = TierTwo[type];
             }
             else {
@@ -292,10 +294,10 @@ class PlayerBase extends Component {
     Upgrader() {
         this.props.changeState({ text1 : 'This Upgrades what' });
         this.props.changeState({ text2 : 'Building is Selected' });
-        let locate = this.props.BUModel
+        let locate = BUModel
         let type = this.props.built[locate];
         console.log(locate + ' var');
-        console.log(this.props.BUModel + ' redux');
+        console.log(BUModel + ' redux');
         if (this.props.builtTier[locate] === 't1') {
             console.log('t1 selected');
             console.log(type);
