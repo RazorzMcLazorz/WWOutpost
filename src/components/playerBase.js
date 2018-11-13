@@ -28,6 +28,14 @@ const TierThree = {
     school : [12, 12, 12, 8, 6],
     factory : [15, 0, 21, 10, 15]
 }
+// type of upgrade
+const TypeUpgrade = {
+    home : ['cabin', 'brick'],
+    store : ['dinner', 'sMarket'],
+    camp : ['militaryBase', 'airField'],
+    school : ['publicSchool', 'university'],
+    factory : ['advanced', 'vehicle']
+}
 
 class PlayerBase extends Component {
 
@@ -250,7 +258,10 @@ class PlayerBase extends Component {
         }
     }
 
-    
+    Upgrader() {
+        this.props.changeState({ text1 : 'This Upgrades what' });
+        this.props.changeState({ text2 : 'Building is Selected' });
+    }
 
     render() {
         return (
@@ -464,7 +475,7 @@ class PlayerBase extends Component {
                             <i className="fas fa-arrow-circle-up"></i> menu
                         </a> : '' }
                         {this.props.upgrade ?
-                        <div className="scroll">
+                        <div className="scroll" onClick={() => this.Upgrader()}>
                             <div>
                                 Upgrade
                                 <div>
