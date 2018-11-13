@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 import './building';
 import { connect } from 'react-redux';
 import * as actions from '../js/actions';
+import { runInThisContext } from 'vm';
 
+// Global Variable for what is selected
 let BUModel = '';
+let tempvar = 0;
+let select = [];
+let BUType = '';
 
 // board costs: wood refund [0], food refund [1], metal refund [2], stone refund [3], oil refund [4], population [5], research [6]
 const board = {
@@ -16,27 +21,27 @@ const board = {
 };
 // Tier 2 Upgrade and refund prices
 const TierTwo = {
-    home : [10, 6, 2, 0, 0],
-    store : [10, 12, 8, 4, 5],
-    camp : [9, 4, 6, 6, 3],
-    school : [6, 10, 5, 3, 2],
-    factory : [6, 0, 10, 8, 8]
+    'home' : [10, 6, 2, 0, 0],
+    'store' : [10, 12, 8, 4, 5],
+    'camp' : [9, 4, 6, 6, 3],
+    'school' : [6, 10, 5, 3, 2],
+    'factory' : [6, 0, 10, 8, 8]
 };
 // Tier 3 Upgrade and refund prices
 const TierThree = {
-    home : [2, 9, 4, 15, 1],
-    store : [11, 18, 10, 8, 8],
-    camp : [11, 6, 12, 10, 6],
-    school : [12, 12, 12, 8, 6],
-    factory : [15, 0, 21, 10, 15]
+    'home' : [2, 9, 4, 15, 1],
+    'store' : [11, 18, 10, 8, 8],
+    'camp' : [11, 6, 12, 10, 6],
+    'school' : [12, 12, 12, 8, 6],
+    'factory' : [15, 0, 21, 10, 15]
 }
 // type of upgrade
 const TypeUpgrade = {
-    home : ['cabin', 'brick'],
-    store : ['dinner', 'market'],
-    camp : ['military', 'air'],
-    school : ['public', 'university'],
-    factory : ['advanced', 'vehicle']
+    'home' : ['cabin', 'brick'],
+    'store' : ['dinner', 'market'],
+    'camp' : ['military', 'air'],
+    'school' : ['public', 'university'],
+    'factory' : ['advanced', 'vehicle']
 }
 
 class PlayerBase extends Component {
@@ -185,6 +190,7 @@ class PlayerBase extends Component {
         this.props.changeState({ text2 : 'build buildings for population' });
         // connects whats selected to global variable
         BUModel = model;
+        BUType = this.props.built[BUModel];
 
         this.props.changeState({ buildResource : false });
 
@@ -236,21 +242,25 @@ class PlayerBase extends Component {
         }
     }
 
+    // Research text change
     TechText() {
         this.props.changeState({ text1 : 'Tech Tab allows for upgrades to your' });
         this.props.changeState({ text2 : 'current buildings and to add more.' });
     }
 
+    // Supply text change
     PointOut(type) {
         this.props.changeState({ text1 : 'This is your ' + type + ' resource' });
         this.props.changeState({ text2 : 'the + is what you gain per round' });
     }
 
+    // Resource tab text change
     ResourceSwap() {
         this.props.changeState({ text1 : 'Welcome to the Resource Tab' });
         this.props.changeState({ text2 : 'Click a Resource to begin' });
     }
 
+    // Access to Capital change
     Capital() {
         // Text change
         this.props.changeState({ text1 : 'Your Capital Building that' });
@@ -262,6 +272,7 @@ class PlayerBase extends Component {
         this.props.changeState({capital: true});
     }
 
+    // Upgrading Capital
     CapitalUpgrade() {
         if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 1) {
             console.log('Capital Upgrade Complete 2');
@@ -291,19 +302,58 @@ class PlayerBase extends Component {
         }
     }
 
+    // Upgrades Buildings
     Upgrader() {
         this.props.changeState({ text1 : 'This Upgrades what' });
         this.props.changeState({ text2 : 'Building is Selected' });
-        let locate = BUModel
-        let type = this.props.built[locate];
+        let locate = BUType;
         console.log(locate + ' var');
         console.log(BUModel + ' redux');
         if (this.props.builtTier[locate] === 't1') {
             console.log('t1 selected');
-            console.log(type);
+            console.log(BUType);
+            select = TierTwo[locate];
+            console.log(`${select} ${locate} ${BUModel}`);
+            if (this.props.wood >= select[0] && this.props.food >= select[1] && this.props.metal >= select[2] && this.props.stone >= select[3] && this.props.oil >= select[4]) {
+                tempvar = this.props.wood - select[0];
+                console.log(tempvar);
+                this.props.changeState({ wood : tempvar });
+                tempvar = this.props.food - select[1];
+                console.log(tempvar);
+                this.props.changeState({ food : tempvar });
+                tempvar = this.props.metal - select[2];
+                console.log(tempvar);
+                this.props.changeState({ metal : tempvar });
+                tempvar = this.props.stone - select[3];
+                console.log(tempvar);
+                this.props.changeState({ stone : tempvar });
+                tempvar = this.props.oil - select[4];
+                console.log(tempvar);
+                this.props.changeState({ oil : tempvar });
+            }
+            else {
+                console.log('not enough resources');
+                console.log('cost = ' + TierTwo[home]);
+            }
         }
         else if (this.props.builtTier[locate] === 't2') {
             console.log('t2 selected');
+            select = TierThree[BUModel];
+            if (this.props.wood >= select[0] && this.props.food >= select[1] && this.props.metal >= select[2] && this.props.stone >= select[3] && this.props.oil >= select[4]) {
+                tempvar = this.props.wood - select[0];
+                this.props.changeState({ wood : tempvar });
+                tempvar = this.props.food - select[1];
+                this.props.changeState({ food : tempvar });
+                tempvar = this.props.metal - select[2];
+                this.props.changeState({ metal : tempvar });
+                tempvar = this.props.stone - select[3];
+                this.props.changeState({ stone : tempvar });
+                tempvar = this.props.oil - select[4];
+                this.props.changeState({ oil : tempvar });
+            }
+            else {
+                console.log('not enough resources');
+            }
         }
         else {
 
