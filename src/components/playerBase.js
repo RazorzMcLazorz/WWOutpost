@@ -84,10 +84,9 @@ class PlayerBase extends Component {
         this.props.changeState({ buildResource : false });
         let temp = this.props.buildConnect;
         let tier = this.props.builtTier[temp];
-        let unlocked = typer + this.props.builtTier[temp];
+        let unlocked = typer + tier;
         console.log('unlocked: ' + unlocked);
         if (W <= this.props.wood && F <= this.props.food && M <= this.props.metal && S <= this.props.stone && O <= this.props.oil && this.props.research[unlocked] === true) {
-            
             let object = this.props.built;
             console.log(this.props.built[temp]);
             object[temp] = typer;
@@ -111,16 +110,16 @@ class PlayerBase extends Component {
             this.props.changeState({oil : O});
             console.log(O);
 
+            // population increase
             console.log('boardval pop: ' + board[typer][5]);
             let popt = this.props.pop + board[typer][5];
             this.props.changeState({ pop : popt});
-            // population increase
             
+            // population increase
             console.log('boardval res: ' + board[typer][6]);
             let rest = this.props.res + board[typer][6];
             this.props.changeState({ res : rest});
-            // population increase
-
+            
             this.props.changeState({build : false});
             object = this.props.building;
             object[temp] = true;
@@ -309,12 +308,13 @@ class PlayerBase extends Component {
         let locate = BUType;
         console.log(locate + ' var');
         console.log(BUModel + ' redux');
-        if (this.props.builtTier[locate] === 't1') {
+        if (this.props.builtTier[BUModel] === 't1') {
             console.log('t1 selected');
             console.log(BUType);
             select = TierTwo[locate];
             console.log(`${select} ${locate} ${BUModel}`);
             if (this.props.wood >= select[0] && this.props.food >= select[1] && this.props.metal >= select[2] && this.props.stone >= select[3] && this.props.oil >= select[4]) {
+                // Remove Cost
                 tempvar = this.props.wood - select[0];
                 console.log(tempvar);
                 this.props.changeState({ wood : tempvar });
@@ -330,10 +330,12 @@ class PlayerBase extends Component {
                 tempvar = this.props.oil - select[4];
                 console.log(tempvar);
                 this.props.changeState({ oil : tempvar });
+                // change to Tier 2
+                
             }
             else {
                 console.log('not enough resources');
-                console.log('cost = ' + TierTwo[home]);
+                console.log('cost = ' + TierTwo[locate]);
             }
         }
         else if (this.props.builtTier[locate] === 't2') {
@@ -572,8 +574,8 @@ class PlayerBase extends Component {
                             <i className="fas fa-arrow-circle-up"></i> menu
                         </a> : '' }
                         {this.props.upgrade ?
-                        <div className="scroll" onClick={() => this.Upgrader()}>
-                            <div>
+                        <div className="scroll">
+                            <div onClick={() => this.Upgrader()}>
                                 Upgrade
                                 <div>
                                     <a><img src="./assets/wood.svg"></img> - {this.props.BUFood}</a>
