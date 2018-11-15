@@ -5,7 +5,48 @@ import * as actions from '../js/actions';
 
 class WarInfo extends Component {
 
+    // Is Research complete?
+    Research() {
+        if (this.props.res >= this.props.prevUnlockCost) {
+            console.log('research complete');
+            // changes research to true
+            let object = this.props.research;
+            object[this.props.pUType] = true;
+            this.props.changeState({ research: object });
+            
+            object = this.props.unlocklocks;
+
+            if (this.props.pUTier === 't1') {
+                // first Tech
+                object['unlock' + this.props.pUtype] = '';
+                object['unlock' + this.props.pUName + 't2'] = 'unlock';
+                console.log('FT');
+            }
+            else if (this.props.pUTier === 't2') {
+                // second Tech
+                object['unlock' + this.props.pUtype] = '';
+                object['unlock' + this.props.pUName + 't3'] = 'unlock';
+                console.log('ST');
+            }
+            else if (this.props.pUTier === 't3') {
+                // Third Tech
+                object['unlock' + this.props.pUtype] = '';
+                console.log('TT');
+            }
+            else {
+                console.log('Tech change didnt work');
+            }
+        this.props.changeState({ res : this.props.res - this.props.prevUnlockCost });
+        this.props.changeState({ pUTier : '' });
+        this.props.changeState({ prevUnlockCost : 0 });
+        }
+        else {
+            console.log('research not complete');
+        }
+    }
+
     AfterInfo() {
+        this.Research();
         this.props.changeState({ text1 : 'Welcome to Round ' + this.props.round + ' of 12' });
         this.props.changeState({ text2 : 'Click yellow to begin again.' });
     }

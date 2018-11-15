@@ -331,7 +331,11 @@ class PlayerBase extends Component {
                 console.log(tempvar);
                 this.props.changeState({ oil : tempvar });
                 // change to Tier 2
-                
+                tempvar = this.props.builtTier;
+                console.log(tempvar);
+                tempvar[BUType] = 't2';
+                this.props.changeState({ builtTier : tempvar });
+                console.log(this.props.builtTier)
             }
             else {
                 console.log('not enough resources');
@@ -360,6 +364,8 @@ class PlayerBase extends Component {
         else {
 
         }
+        this.asset('');
+        this.forceUpdate();
     }
 
     render() {
