@@ -314,6 +314,11 @@ class PlayerBase extends Component {
             select = TierTwo[locate];
             console.log(`${select} ${locate} ${BUModel}`);
             if (this.props.wood >= select[0] && this.props.food >= select[1] && this.props.metal >= select[2] && this.props.stone >= select[3] && this.props.oil >= select[4]) {
+                // Remove building picture to be replaced by new building
+                tempvar = this.props.built;
+                tempvar[BUModel] = '';
+                this.props.changeState({ built : tempvar });
+                this.forceUpdate();
                 // Remove Cost
                 tempvar = this.props.wood - select[0];
                 console.log(tempvar);
@@ -333,9 +338,14 @@ class PlayerBase extends Component {
                 // change to Tier 2
                 tempvar = this.props.builtTier;
                 console.log(tempvar);
-                tempvar[BUType] = 't2';
+                tempvar[BUModel] = 't2';
                 this.props.changeState({ builtTier : tempvar });
                 console.log(this.props.builtTier)
+                // Replace building type
+                tempvar = this.props.built;
+                tempvar[BUModel] = BUType;
+                this.props.changeState({ built : tempvar });
+                this.forceUpdate();
             }
             else {
                 console.log('not enough resources');
@@ -346,16 +356,38 @@ class PlayerBase extends Component {
             console.log('t2 selected');
             select = TierThree[BUModel];
             if (this.props.wood >= select[0] && this.props.food >= select[1] && this.props.metal >= select[2] && this.props.stone >= select[3] && this.props.oil >= select[4]) {
+                // Remove building picture to be replaced by new building
+                tempvar = this.props.built;
+                tempvar[BUModel] = '';
+                this.props.changeState({ built : tempvar });
+                this.forceUpdate();
+                // Remove Cost
                 tempvar = this.props.wood - select[0];
+                console.log(tempvar);
                 this.props.changeState({ wood : tempvar });
                 tempvar = this.props.food - select[1];
+                console.log(tempvar);
                 this.props.changeState({ food : tempvar });
                 tempvar = this.props.metal - select[2];
+                console.log(tempvar);
                 this.props.changeState({ metal : tempvar });
                 tempvar = this.props.stone - select[3];
+                console.log(tempvar);
                 this.props.changeState({ stone : tempvar });
                 tempvar = this.props.oil - select[4];
+                console.log(tempvar);
                 this.props.changeState({ oil : tempvar });
+                // change to Tier 2
+                tempvar = this.props.builtTier;
+                console.log(tempvar);
+                tempvar[BUModel] = 't3';
+                this.props.changeState({ builtTier : tempvar });
+                console.log(this.props.builtTier)
+                // Replace building type
+                tempvar = this.props.built;
+                tempvar[BUModel] = BUType;
+                this.props.changeState({ built : tempvar });
+                this.forceUpdate();
             }
             else {
                 console.log('not enough resources');
