@@ -11,15 +11,35 @@ let tempvar = 0;
 let select = [];
 let BUType = '';
 
-// board costs: wood refund [0], food refund [1], metal refund [2], stone refund [3], oil refund [4], population [5], research [6]
+// Resource Refund : wood refund [0], food refund [1], metal refund [2], stone refund [3], oil refund [4], 
+// Bonus Refund    : population [5], research [6], popMultply [7], SurvivalRate [8], chanceToWin [9]
+// Deals with Tier 1 Refunds
 const board = {
-    'home' : [3, 2, 0, 0, 0, 10, 0],
-    'camp' : [4, 1, 1, 2, 0, 0, 0],
-    'store' : [5, 3, 0, 0, 0, 0, 0],
-    'school' : [1, 0, 0, 4, 0, 0, 5],
-    'factory' : [1, 0, 2, 3, 2, 0, 0],
+    //                       \/ Split means Resource vs Bonus
+    'home' : [3, 2, 0, 0, 0,   10, 0, 0, 0, 0],
+    'camp' : [4, 1, 1, 2, 0,   0, 0, 0, 0, 0],
+    'store' : [5, 3, 0, 0, 0,   0, 0, 0, 0, 0],
+    'school' : [1, 0, 0, 4, 0,   0, 2, 0, 0, 0],
+    'factory' : [1, 0, 2, 3, 2,   0, 0, 0, 0, 0],
 };
-// Tier 2 Upgrade and refund prices
+// Deals with Tier 2 Refunds
+const board2 = {
+    'home' : [3, 2, 0, 0, 0,   25, 0, 0, 0, 0],
+    'camp' : [4, 1, 1, 2, 0,   0, 0, 0, 0, 0],
+    'store' : [5, 3, 0, 0, 0,   0, 0, 0, 0, 0],
+    'school' : [1, 0, 0, 4, 0,   0, 5, 0, 0, 0],
+    'factory' : [1, 0, 2, 3, 2,   0, 0, 0, 0, 0],
+};
+// Deals with Tier 3 Refunds
+const board3 = {
+    'home' : [3, 2, 0, 0, 0,   60, 0, 0, 0, 0],
+    'camp' : [4, 1, 1, 2, 0,   0, 0, 0, 0, 0],
+    'store' : [5, 3, 0, 0, 0,   0, 0, 0, 0, 0],
+    'school' : [1, 0, 0, 4, 0,   0, 10, 0, 0, 0],
+    'factory' : [1, 0, 2, 3, 2,   0, 0, 0, 0, 0],
+};
+
+// Tier 2 Upgrade price
 const TierTwo = {
     'home' : [10, 6, 2, 0, 0],
     'store' : [10, 12, 8, 4, 5],
@@ -27,7 +47,7 @@ const TierTwo = {
     'school' : [6, 10, 5, 3, 2],
     'factory' : [6, 0, 10, 8, 8]
 };
-// Tier 3 Upgrade and refund prices
+// Tier 3 Upgrade price
 const TierThree = {
     'home' : [2, 9, 4, 15, 1],
     'store' : [11, 18, 10, 8, 8],
@@ -140,41 +160,161 @@ class PlayerBase extends Component {
         let num = 0;
         let item = object[temp];
 
-        num = this.props.wood + board[item][0];
-        this.props.changeState({ wood: num });
-        console.log('Wood Refund : ' + item + ' : ' + board[item][0])
-        // Wood Refund
+        // Tier Selection of Refund
+        if (this.props.builtTier[temp] === 't1') {
+            num = this.props.wood + board[item][0];
+            this.props.changeState({ wood: num });
+            console.log('Wood Refund : ' + item + ' : ' + board[item][0])
+            // Wood Refund
 
-        num = this.props.food + board[item][1];
-        this.props.changeState({ food: num });
-        console.log('Food Refund : ' + item + ' : ' + board[item][1])
-        // Food Refund
+            num = this.props.food + board[item][1];
+            this.props.changeState({ food: num });
+            console.log('Food Refund : ' + item + ' : ' + board[item][1])
+            // Food Refund
 
-        num = this.props.metal + board[item][2];
-        this.props.changeState({ metal: num });
-        console.log('Metal Refund : ' + item + ' : ' + board[item][2])
-        // Metal Refund
+            num = this.props.metal + board[item][2];
+            this.props.changeState({ metal: num });
+            console.log('Metal Refund : ' + item + ' : ' + board[item][2])
+            // Metal Refund
 
-        num = this.props.stone + board[item][3];
-        this.props.changeState({ stone: num });
-        console.log('Stone Refund : ' + item + ' : ' + board[item][3])
-        // Stone Refund
+            num = this.props.stone + board[item][3];
+            this.props.changeState({ stone: num });
+            console.log('Stone Refund : ' + item + ' : ' + board[item][3])
+            // Stone Refund
 
-        num = this.props.oil + board[item][4];
-        this.props.changeState({ oil: num });
-        console.log('Oil Refund : ' + item + ' : ' + board[item][4])
-        // Oil Refund
+            num = this.props.oil + board[item][4];
+            this.props.changeState({ oil: num });
+            console.log('Oil Refund : ' + item + ' : ' + board[item][4])
+            // Oil Refund
 
-        num = this.props.pop - board[item][5];
-        this.props.changeState({ pop: num });
-        console.log('Population Removal : ' + item + ' : ' + board[item][5])
-        // Population Removal
-        
-        num = this.props.res - board[item][6];
-        this.props.changeState({ res: num });
-        console.log('Research Removal : ' + item + ' : ' + board[item][6])
-        // Research Removal
+            num = this.props.pop - board[item][5];
+            this.props.changeState({ pop: num });
+            console.log('Population Removal : ' + item + ' : ' + board[item][5])
+            // Population Removal
+            
+            num = this.props.res - board[item][6];
+            this.props.changeState({ res: num });
+            console.log('Research Removal : ' + item + ' : ' + board[item][6])
+            // Research Removal
 
+            num = this.props.popMult - board[item][7];
+            this.props.changeState({ popMult: num });
+            console.log('PopMulti% Removal : ' + item + ' : ' + board[item][7])
+            // Population multiplyer removal
+
+            num = this.props.survRate - board[item][8];
+            this.props.changeState({ survRate: num });
+            console.log('SurvivalRate% Removal : ' + item + ' : ' + board[item][8])
+            // Survival Rate Removal
+
+            num = this.props.winChance - board[item][9];
+            this.props.changeState({ winChance: num });
+            console.log('WinChance% Removal : ' + item + ' : ' + board[item][9])
+            // chance to win removal
+        }
+        else if (this.props.builtTier[temp] === 't2') {
+            num = this.props.wood + board2[item][0];
+            this.props.changeState({ wood: num });
+            console.log('Wood Refund : ' + item + ' : ' + board2[item][0])
+            // Wood Refund
+
+            num = this.props.food + board2[item][1];
+            this.props.changeState({ food: num });
+            console.log('Food Refund : ' + item + ' : ' + board2[item][1])
+            // Food Refund
+
+            num = this.props.metal + board2[item][2];
+            this.props.changeState({ metal: num });
+            console.log('Metal Refund : ' + item + ' : ' + board2[item][2])
+            // Metal Refund
+
+            num = this.props.stone + board2[item][3];
+            this.props.changeState({ stone: num });
+            console.log('Stone Refund : ' + item + ' : ' + board2[item][3])
+            // Stone Refund
+
+            num = this.props.oil + board2[item][4];
+            this.props.changeState({ oil: num });
+            console.log('Oil Refund : ' + item + ' : ' + board2[item][4])
+            // Oil Refund
+
+            num = this.props.pop - board2[item][5];
+            this.props.changeState({ pop: num });
+            console.log('Population Removal : ' + item + ' : ' + board2[item][5])
+            // Population Removal
+            
+            num = this.props.res - board2[item][6];
+            this.props.changeState({ res: num });
+            console.log('Research Removal : ' + item + ' : ' + board2[item][6])
+            // Research Removal
+
+            num = this.props.popMult - board2[item][7];
+            this.props.changeState({ popMult: num });
+            console.log('PopMulti% Removal : ' + item + ' : ' + board2[item][7])
+            // Population multiplyer removal
+
+            num = this.props.survRate - board2[item][8];
+            this.props.changeState({ survRate: num });
+            console.log('SurvivalRate% Removal : ' + item + ' : ' + board2[item][8])
+            // Survival Rate Removal
+
+            num = this.props.winChance - board2[item][9];
+            this.props.changeState({ winChance: num });
+            console.log('WinChance% Removal : ' + item + ' : ' + board2[item][9])
+            // chance to win removal
+        }
+        else if (this.props.builtTier[temp] === 't3') {
+            num = this.props.wood + board3[item][0];
+            this.props.changeState({ wood: num });
+            console.log('Wood Refund : ' + item + ' : ' + board3[item][0])
+            // Wood Refund
+
+            num = this.props.food + board3[item][1];
+            this.props.changeState({ food: num });
+            console.log('Food Refund : ' + item + ' : ' + board3[item][1])
+            // Food Refund
+
+            num = this.props.metal + board3[item][2];
+            this.props.changeState({ metal: num });
+            console.log('Metal Refund : ' + item + ' : ' + board3[item][2])
+            // Metal Refund
+
+            num = this.props.stone + board3[item][3];
+            this.props.changeState({ stone: num });
+            console.log('Stone Refund : ' + item + ' : ' + board3[item][3])
+            // Stone Refund
+
+            num = this.props.oil + board3[item][4];
+            this.props.changeState({ oil: num });
+            console.log('Oil Refund : ' + item + ' : ' + board3[item][4])
+            // Oil Refund
+
+            num = this.props.pop - board3[item][5];
+            this.props.changeState({ pop: num });
+            console.log('Population Removal : ' + item + ' : ' + board3[item][5])
+            // Population Removal
+            
+            num = this.props.res - board3[item][6];
+            this.props.changeState({ res: num });
+            console.log('Research Removal : ' + item + ' : ' + board3[item][6])
+            // Research Removal
+
+            num = this.props.popMult - board3[item][7];
+            this.props.changeState({ popMult: num });
+            console.log('PopMulti% Removal : ' + item + ' : ' + board3[item][7])
+            // Population multiplyer removal
+
+            num = this.props.survRate - board3[item][8];
+            this.props.changeState({ survRate: num });
+            console.log('SurvivalRate% Removal : ' + item + ' : ' + board3[item][8])
+            // Survival Rate Removal
+
+            num = this.props.winChance - board3[item][9];
+            this.props.changeState({ winChance: num });
+            console.log('WinChance% Removal : ' + item + ' : ' + board3[item][9])
+            // chance to win removal
+        }
+        // Line normal reset
         object[temp] = '';
         this.props.changeState({built: object });
         object = this.props.building;
@@ -352,9 +492,9 @@ class PlayerBase extends Component {
                 console.log('cost = ' + TierTwo[locate]);
             }
         }
-        else if (this.props.builtTier[locate] === 't2') {
+        else if (this.props.builtTier[BUModel] === 't2') {
             console.log('t2 selected');
-            select = TierThree[BUModel];
+            select = TierThree[locate];
             if (this.props.wood >= select[0] && this.props.food >= select[1] && this.props.metal >= select[2] && this.props.stone >= select[3] && this.props.oil >= select[4]) {
                 // Remove building picture to be replaced by new building
                 tempvar = this.props.built;

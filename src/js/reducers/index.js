@@ -165,6 +165,12 @@ const initialState = {
         oil : 0,
         pop : 0,
         troop : 32,
+
+        // Bonus % total
+        popMult : 0,
+        survRate : 0,
+        winChance : 0,
+
         // Resources Added Each Round
         woodAdd : 10,
         foodAdd : 10,
