@@ -537,6 +537,8 @@ class PlayerBase extends Component {
 
         }
         this.asset('');
+        this.props.changeState({ build: false });
+        this.props.changeState({ upgrade: false });
         this.forceUpdate();
     }
 
