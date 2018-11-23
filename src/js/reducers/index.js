@@ -111,7 +111,7 @@ const initialState = {
         BUResearch : 0,
         BUBattleWining : 0,
 
-        // true false
+        // true false if its researched or not
         research : {
             'homet1' : true,
             'campt1' : true,

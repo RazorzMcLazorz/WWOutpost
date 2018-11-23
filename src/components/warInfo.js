@@ -11,26 +11,28 @@ class WarInfo extends Component {
             console.log('research complete');
             // changes research to true
             let object = this.props.research;
-            object[this.props.pUType] = true;
+            let tempvar = this.props.pUType;
+            let temp = this.props.pUType + this.props.pUTier;
+            object[temp] = true;
             this.props.changeState({ research: object });
             
             object = this.props.unlocklocks;
 
             if (this.props.pUTier === 't1') {
                 // first Tech
-                object['unlock' + this.props.pUtype] = '';
+                object['unlock' + tempvar] = '';
                 object['unlock' + this.props.pUName + 't2'] = 'unlock';
                 console.log('FT');
             }
             else if (this.props.pUTier === 't2') {
                 // second Tech
-                object['unlock' + this.props.pUtype] = '';
+                object['unlock' + tempvar] = '';
                 object['unlock' + this.props.pUName + 't3'] = 'unlock';
                 console.log('ST');
             }
             else if (this.props.pUTier === 't3') {
                 // Third Tech
-                object['unlock' + this.props.pUtype] = '';
+                object['unlock' + tempvar] = '';
                 console.log('TT');
             }
             else {

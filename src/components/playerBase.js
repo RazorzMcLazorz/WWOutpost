@@ -105,8 +105,11 @@ class PlayerBase extends Component {
         let temp = this.props.buildConnect;
         let tier = this.props.builtTier[temp];
         let unlocked = typer + tier;
+        console.log(temp);
+        console.log(tier);
+        console.log(typer);
         console.log('unlocked: ' + unlocked);
-        if (W <= this.props.wood && F <= this.props.food && M <= this.props.metal && S <= this.props.stone && O <= this.props.oil && this.props.research[unlocked] === true) {
+        if (W <= this.props.wood && F <= this.props.food && M <= this.props.metal && S <= this.props.stone && O <= this.props.oil && this.props.research[typer + tier] === true) {
             let object = this.props.built;
             console.log(this.props.built[temp]);
             object[temp] = typer;
@@ -149,8 +152,15 @@ class PlayerBase extends Component {
         else {
             console.log('broke');
             this.props.changeState({ buildResource : true });
-            this.props.changeState({ text1 : 'Not Researched or' });
-            this.props.changeState({ text2 : 'Not enough supplies' });
+            if (this.props.research[unlocked] != true) {
+                this.props.changeState({ text1 : 'Not' });
+                this.props.changeState({ text2 : 'Researched' });
+                console.log(this.props.research);
+            }
+            else {
+                this.props.changeState({ text1 : 'Not enough' });
+                this.props.changeState({ text2 : 'supplies' });
+            }
         }
     }
 
@@ -448,12 +458,15 @@ class PlayerBase extends Component {
         let locate = BUType;
         console.log(locate + ' var');
         console.log(BUModel + ' redux');
+
+        console.log('research type : ' + this.props.research[locate + this.props.builtTier[BUModel]]);
+
         if (this.props.builtTier[BUModel] === 't1') {
             console.log('t1 selected');
             console.log(BUType);
             select = TierTwo[locate];
             console.log(`${select} ${locate} ${BUModel}`);
-            if (this.props.wood >= select[0] && this.props.food >= select[1] && this.props.metal >= select[2] && this.props.stone >= select[3] && this.props.oil >= select[4]) {
+            if (this.props.wood >= select[0] && this.props.food >= select[1] && this.props.metal >= select[2] && this.props.stone >= select[3] && this.props.oil >= select[4] && this.props.research[locate + this.props.builtTier[BUModel]] === true) {
                 // Remove building picture to be replaced by new building
                 tempvar = this.props.built;
                 tempvar[BUModel] = '';
@@ -495,7 +508,7 @@ class PlayerBase extends Component {
         else if (this.props.builtTier[BUModel] === 't2') {
             console.log('t2 selected');
             select = TierThree[locate];
-            if (this.props.wood >= select[0] && this.props.food >= select[1] && this.props.metal >= select[2] && this.props.stone >= select[3] && this.props.oil >= select[4]) {
+            if (this.props.wood >= select[0] && this.props.food >= select[1] && this.props.metal >= select[2] && this.props.stone >= select[3] && this.props.oil >= select[4] && this.props.research[locate + this.props.builtTier[BUModel]] === true) {
                 // Remove building picture to be replaced by new building
                 tempvar = this.props.built;
                 tempvar[BUModel] = '';
