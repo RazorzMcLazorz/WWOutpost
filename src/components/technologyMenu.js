@@ -11,12 +11,13 @@ class TechnologyMenu extends Component {
     Unlock (type, tier, cost, name) {
         if (this.props.unlocklocks[unl + type + tier] === 'unlock') {
 
-            UNSAFE_componentWillUpdate(nextProps);
+            // this.UNSAFE_componentWillUpdate(nextProps);
 
             // if tech is ready to be unlocked than this will set it to being unlocked
             this.props.changeState({ prevUnlock : name });
             this.props.changeState({ prevUnlockCost : cost });
             this.props.changeState({ pUtype : type + tier });
+            console.log(this.props.pUtype);
             this.props.changeState({ pUName : type });
             this.props.changeState({ pUTier : tier });
 

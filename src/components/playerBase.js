@@ -148,6 +148,15 @@ class PlayerBase extends Component {
             object[temp] = true;
             this.props.changeState({ building: object });
             this.props.changeState({ buildResource : false });
+
+            console.log(board[typer][5]);
+
+            this.props.changeState({ pop : this.props.pop + board[typer][5]});
+            this.props.changeState({ resAdd : this.props.resAdd + board[typer][6]});
+            this.props.changeState({ popMult : this.props.popMult + board[typer][7]});
+            this.props.changeState({ survRate : this.props.survRate + board[typer][8]});
+            this.props.changeState({ winChance : this.props.winChance + board[typer][9]});
+
         }
         else {
             console.log('broke');

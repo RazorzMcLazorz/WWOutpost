@@ -155,22 +155,20 @@ const initialState = {
         // whats being unlocked cost
         prevUnlockCost : 0,
         // Research
-        res : 0,
-        resAdd : 6,
+        res : 0, //BONUS
+        resAdd : 6, //BONUS
         // Total Resources
         wood : 30,
         food : 30,
         metal: 5,
         stone : 15,
         oil : 0,
-        pop : 0,
+        pop : 0, //BONUS
         troop : 32,
-
         // Bonus % total
-        popMult : 0,
-        survRate : 0,
-        winChance : 0,
-
+        popMult : 1, //BONUS
+        survRate : 1, //BONUS
+        winChance : 1, //BONUS
         // Resources Added Each Round
         woodAdd : 10,
         foodAdd : 10,

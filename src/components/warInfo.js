@@ -11,9 +11,10 @@ class WarInfo extends Component {
             console.log('research complete');
             // changes research to true
             let object = this.props.research;
-            let tempvar = this.props.pUType;
-            let temp = this.props.pUType + this.props.pUTier;
+            let tempvar = this.props.pUtype;
+            let temp = this.props.pUtype;
             object[temp] = true;
+            console.log(temp);
             this.props.changeState({ research: object });
             
             object = this.props.unlocklocks;
@@ -22,7 +23,7 @@ class WarInfo extends Component {
                 // first Tech
                 object['unlock' + tempvar] = '';
                 object['unlock' + this.props.pUName + 't2'] = 'unlock';
-                console.log('FT');
+                console.log('FT ' + 'unlock' + this.props.pUtype);
             }
             else if (this.props.pUTier === 't2') {
                 // second Tech
@@ -41,6 +42,10 @@ class WarInfo extends Component {
         this.props.changeState({ res : this.props.res - this.props.prevUnlockCost });
         this.props.changeState({ pUTier : '' });
         this.props.changeState({ prevUnlockCost : 0 });
+
+        this.props.changeState({ unlocklocks : object });
+        console.log(this.props.unlocklocks);
+        console.log(object);
         }
         else {
             console.log('research not complete');
