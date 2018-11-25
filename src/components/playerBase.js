@@ -64,6 +64,14 @@ const TypeUpgrade = {
     'factory' : ['advanced', 'vehicle']
 }
 
+// Capital Resource
+let CWood = 0;
+let CFood = 0;
+let CMetal = 0;
+let CStone = 0;
+let COil = 0;
+let CRes = 0;
+
 class PlayerBase extends Component {
 
 // makes sure that the img is correct
@@ -428,6 +436,49 @@ class PlayerBase extends Component {
         this.props.changeState({upgrade: false});
         this.props.changeState({build: false});
         this.props.changeState({capital: true});
+
+        // changes what resource amount players see
+        if (this.props.capitalTier === 1) {
+            CWood = 8;
+            CFood = 5;
+            CMetal = 7;
+            CStone = 4;
+            COil = 3;
+            CRes = 6;
+        }
+        else if (this.props.capitalTier === 2) {
+            CWood = 8;
+            CFood = 5;
+            CMetal = 7;
+            CStone = 4;
+            COil = 3;
+            CRes = 6;
+        }
+        else if (this.props.capitalTier === 3) {
+            CWood = 8;
+            CFood = 5;
+            CMetal = 7;
+            CStone = 4;
+            COil = 3;
+            CRes = 6;  
+        }
+        else if (this.props.capitalTier === 4) {
+            CWood = 8;
+            CFood = 5;
+            CMetal = 7;
+            CStone = 4;
+            COil = 3;
+            CRes = 6;
+        }
+        else if (this.props.capitalTier === 4) {
+            CWood = 8;
+            CFood = 5;
+            CMetal = 7;
+            CStone = 4;
+            COil = 3;
+            CRes = 6;
+        }
+
     }
 
     // Upgrading Capital
@@ -435,18 +486,42 @@ class PlayerBase extends Component {
         if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 1) {
             console.log('Capital Upgrade Complete 2');
             this.props.changeState({ capitalTier : 2 });
+            this.props.changeState({ wood : this.props.wood - 8 });
+            this.props.changeState({ food : this.props.food - 5 });
+            this.props.changeState({ metal : this.props.metal - 7 });
+            this.props.changeState({ stone : this.props.stone - 4 });
+            this.props.changeState({ oil : this.props.oil - 3 });
+            this.props.changeState({ resAdd : this.props.resAdd + 6 });
         }
         else if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 2) {
             console.log('Capital Upgrade Complete 3');
             this.props.changeState({ capitalTier : 3 });
+            this.props.changeState({ wood : this.props.wood - 8 });
+            this.props.changeState({ food : this.props.food - 5 });
+            this.props.changeState({ metal : this.props.metal - 7 });
+            this.props.changeState({ stone : this.props.stone - 4 });
+            this.props.changeState({ oil : this.props.oil - 3 });
+            this.props.changeState({ resAdd : this.props.resAdd + 6 });
         }
         else if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 3) {
             console.log('Capital Upgrade Complete 4');
             this.props.changeState({ capitalTier : 4 });
+            this.props.changeState({ wood : this.props.wood - 8 });
+            this.props.changeState({ food : this.props.food - 5 });
+            this.props.changeState({ metal : this.props.metal - 7 });
+            this.props.changeState({ stone : this.props.stone - 4 });
+            this.props.changeState({ oil : this.props.oil - 3 });
+            this.props.changeState({ resAdd : this.props.resAdd + 6 });
         }
         else if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 4) {
             console.log('Capital Upgrade Complete 5');
             this.props.changeState({ capitalTier : 5 });
+            this.props.changeState({ wood : this.props.wood - 8 });
+            this.props.changeState({ food : this.props.food - 5 });
+            this.props.changeState({ metal : this.props.metal - 7 });
+            this.props.changeState({ stone : this.props.stone - 4 });
+            this.props.changeState({ oil : this.props.oil - 3 });
+            this.props.changeState({ resAdd : this.props.resAdd + 6 });
         }
         else {
             console.log('Capital Upgrade Failed');
@@ -458,6 +533,7 @@ class PlayerBase extends Component {
                 this.props.changeState({ text2 : 'Not Enough Resources' });
             }
         }
+        this.props.changeState({capital: false});
     }
 
     // Upgrades Buildings
@@ -812,12 +888,12 @@ class PlayerBase extends Component {
                             <div onClick={() => this.CapitalUpgrade()}>
                                 Upgrade
                                 <div>
-                                    <a><img src="./assets/wood.svg"></img> - 8</a>
-                                    <a><img src="./assets/food.svg"></img> - 5</a>
-                                    <a><img src="./assets/metal.svg"></img> - 7</a>
-                                    <a><img src="./assets/stone.svg"></img> - 4</a>
-                                    <a><img src="./assets/oil.svg"></img> - 3</a>
-                                    <a><img src="./assets/res.svg"></img> + 6</a>
+                                    <a><img src="./assets/wood.svg"></img> - {CWood}</a>
+                                    <a><img src="./assets/food.svg"></img> - {CFood}</a>
+                                    <a><img src="./assets/metal.svg"></img> - {CMetal}</a>
+                                    <a><img src="./assets/stone.svg"></img> - {CStone}</a>
+                                    <a><img src="./assets/oil.svg"></img> - {COil}</a>
+                                    <a><img src="./assets/res.svg"></img> + {CRes}</a>
                                 </div>
                             </div>
                         </div> : '' }
