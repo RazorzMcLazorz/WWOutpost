@@ -10,17 +10,25 @@ class TechnologyMenu extends Component {
     // changing the entire Technology tab location
     Unlock (type, tier, cost, name) {
         if (this.props.unlocklocks[unl + type + tier] === 'unlock') {
+
+            UNSAFE_componentWillUpdate(nextProps);
+
+            // if tech is ready to be unlocked than this will set it to being unlocked
             this.props.changeState({ prevUnlock : name });
             this.props.changeState({ prevUnlockCost : cost });
             this.props.changeState({ pUtype : type + tier });
             this.props.changeState({ pUName : type });
             this.props.changeState({ pUTier : tier });
-            console.log(this.props.prevUnlock + this.props.prevUnlockCost + this.props.pUtype);
+
+            // console doesnt update automatically must be clicked twice
+            // this.forceUpdate() doesnt update console.log
+            this.forceUpdate();
         }
         else {
             console.log('unlocked already or cant be unlocked');
             console.log(this.props.unlocklocks);
         }
+    console.log(this.props.prevUnlock + this.props.prevUnlockCost + this.props.pUtype);
     }
 
     BackToBase() {
