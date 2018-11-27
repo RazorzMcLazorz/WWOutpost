@@ -17,26 +17,26 @@ let BUType = '';
 const board = {
     //                       \/ Split means Resource vs Bonus
     'home' : [3, 2, 0, 0, 0,   10, 0, 0, 0, 0],
-    'camp' : [4, 1, 1, 2, 0,   0, 0, 0, 0, 0],
-    'store' : [5, 3, 0, 0, 0,   0, 0, 0, 0, 0],
+    'camp' : [4, 1, 1, 2, 0,   0, 0, 0, 0.5, 0],
+    'store' : [5, 3, 0, 0, 0,   0, 0, 0.2, 0, 0],
     'school' : [1, 0, 0, 4, 0,   0, 2, 0, 0, 0],
-    'factory' : [1, 0, 2, 3, 2,   0, 0, 0, 0, 0],
+    'factory' : [1, 0, 2, 3, 2,   0, 0, 0, 0, 2],
 };
 // Deals with Tier 2 Refunds
 const board2 = {
     'home' : [3, 2, 0, 0, 0,   25, 0, 0, 0, 0],
-    'camp' : [4, 1, 1, 2, 0,   0, 0, 0, 0, 0],
-    'store' : [5, 3, 0, 0, 0,   0, 0, 0, 0, 0],
+    'camp' : [4, 1, 1, 2, 0,   0, 0, 0, 1.5, 0],
+    'store' : [5, 3, 0, 0, 0,   0, 0, 0.5, 0, 0],
     'school' : [1, 0, 0, 4, 0,   0, 5, 0, 0, 0],
-    'factory' : [1, 0, 2, 3, 2,   0, 0, 0, 0, 0],
+    'factory' : [1, 0, 2, 3, 2,   0, 0, 0, 0, 5],
 };
 // Deals with Tier 3 Refunds
 const board3 = {
     'home' : [3, 2, 0, 0, 0,   60, 0, 0, 0, 0],
-    'camp' : [4, 1, 1, 2, 0,   0, 0, 0, 0, 0],
-    'store' : [5, 3, 0, 0, 0,   0, 0, 0, 0, 0],
+    'camp' : [4, 1, 1, 2, 0,   0, 0, 0, 3, 0],
+    'store' : [5, 3, 0, 0, 0,   0, 0, 1, 0, 0],
     'school' : [1, 0, 0, 4, 0,   0, 10, 0, 0, 0],
-    'factory' : [1, 0, 2, 3, 2,   0, 0, 0, 0, 0],
+    'factory' : [1, 0, 2, 3, 2,   0, 0, 0, 0, 10],
 };
 
 // Tier 2 Upgrade price
@@ -460,7 +460,7 @@ class PlayerBase extends Component {
             CMetal = 7;
             CStone = 4;
             COil = 3;
-            CRes = 6;  
+            CRes = 6;
         }
         else if (this.props.capitalTier === 4) {
             CWood = 8;
