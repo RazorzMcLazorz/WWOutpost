@@ -81,6 +81,15 @@ class PlayerBase extends Component {
            return arg = `./assets/${arg}.png`;
             // console.log(arg);
         }
+        else if (arg === 'HQ') {
+            if (this.props.capitalTier === 1) {
+                arg = 'HQTent';
+            }
+            else if (this.props.capitalTier >= 2) {
+                arg = `HQTentT${this.props.capitalTier}`;
+            }
+            return arg = `./assets/${arg}.png`;
+        }
         else {
             return arg = './assets/default.png';
         }
@@ -359,7 +368,6 @@ class PlayerBase extends Component {
         BUType = this.props.built[BUModel];
 
         this.props.changeState({ buildResource : false });
-
         // reset price variables
         this.props.changeState({ BUFood : 0 });
         this.props.changeState({ BUWood : 0 });
@@ -401,25 +409,21 @@ class PlayerBase extends Component {
             this.props.changeState({ upgrade: false });
             this.props.changeState({ buildConnect: model });
             this.props.changeState({capital: false});
-
         }
         else {
             console.log('not working');
         }
     }
-
     // Research text change
     TechText() {
         this.props.changeState({ text1 : 'Tech Tab allows for upgrades to your' });
         this.props.changeState({ text2 : 'current buildings and to add more.' });
     }
-
     // Supply text change
     PointOut(type) {
         this.props.changeState({ text1 : 'This is your ' + type + ' resource' });
         this.props.changeState({ text2 : 'the + is what you gain per round' });
     }
-
     // Resource tab text change
     ResourceSwap() {
         this.props.changeState({ text1 : 'Welcome to the Resource Tab' });
@@ -478,9 +482,7 @@ class PlayerBase extends Component {
             COil = 3;
             CRes = 6;
         }
-
     }
-
     // Upgrading Capital
     CapitalUpgrade() {
         if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 1) {
@@ -753,7 +755,7 @@ class PlayerBase extends Component {
                             </div>
                             {/* the Capital of your Outpost */}
                             <div id="middleM" onClick={() => this.Capital()}>
-                                <img src="assets\HQTent.png"></img>
+                                <img src={this.asset('HQ')}></img>
                             </div>
                             <div id="bottomM" onClick={() => this.Build( 'bm' )}>
                                 <img src={this.asset('bm')}></img>
