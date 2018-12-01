@@ -40,33 +40,30 @@ completeUpgrade() {
         console.log(object);
         object[i + 'Tier'] = object[i + 'Tier'] + 1;
         console.log(object[i]);
-        this.props.changeState({ Tier : object });
-        this.props.changeState({ supTier : this.props.supTier + 1 });
-        this.props.changeState({ upgradeSupplies : false });
-        this.props.changeState({ wood : this.props.wood - rq1 });
-        this.props.changeState({ food : this.props.food - rq2 });
-        this.props.changeState({ metal : this.props.metal - rq3 });
-        this.props.changeState({ stone : this.props.stone - rq4 });
-        this.props.changeState({ oil : this.props.oil - rq5 });
+        this.props.changeState({ Tier : object,
+        supTier : this.props.supTier + 1,
+        upgradeSupplies : false,
+        wood : this.props.wood - rq1,
+        food : this.props.food - rq2,
+        metal : this.props.metal - rq3,
+        stone : this.props.stone - rq4,
+        oil : this.props.oil - rq5 });
     // updates the round supplier
         console.log(object);
-        this.props.changeState({ woodAdd: 10 * object['woodTier'] });
-        this.props.changeState({ foodAdd: 10 * object['foodTier'] });
-        this.props.changeState({ metalAdd: 10 * object['metalTier'] });
-        this.props.changeState({ stoneAdd: 10 * object['stoneTier'] });
-        this.props.changeState({ oilAdd: 10 * object['oilTier'] });
+        this.props.changeState({ woodAdd: 10 * object['woodTier'],
+        foodAdd: 10 * object['foodTier'],
+        metalAdd: 10 * object['metalTier'],
+        stoneAdd: 10 * object['stoneTier'],
+        oilAdd: 10 * object['oilTier'],
         // text modifier
-        this.props.changeState({ text1 : 'Successfully' });
-        this.props.changeState({ text2 : 'Upgraded!' });
+        text1 : 'Successfully', text2 : 'Upgraded!' });
     }
     else if (tier === 5) {
-        this.props.changeState({ text1 : 'This Building is' });
-        this.props.changeState({ text2 : 'Max Level already' });
+        this.props.changeState({ text1 : 'This Building is', text2 : 'Max Level already' });
         console.log('cant upgrade anymore its maxed out');
     }
     else {
-        this.props.changeState({ text1 : 'Not Enough Supplies' });
-        this.props.changeState({ text2 : 'to upgrade.' });
+        this.props.changeState({ text1 : 'Not Enough Supplies', text2 : 'to upgrade.' });
         console.log('not enough resources');
     }
 }
@@ -74,29 +71,25 @@ completeUpgrade() {
 // supplies
 supplies(resource) {
     let temp2 = 'displayed'
-    this.props.changeState({ text1 : resource });
-    this.props.changeState({ text2 : temp2 });
+    this.props.changeState({ text1 : resource, text2 : temp2 });
 }
 
 // Production Supply
 shownText(resource) {
     let temp = resource + ' production plots allow';
     let temp2 = 'for increased resource each round.'
-    this.props.changeState({ text1 : temp });
-    this.props.changeState({ text2 : temp2 });
+    this.props.changeState({ text1 : temp, text2 : temp2 });
 }
 
 // Upgrade Tab
 UT() {
-    this.props.changeState({ text1 : 'Upgrade Tab displays' });
-    this.props.changeState({ text2 : 'upgrade info like cost.' });
+    this.props.changeState({ text1 : 'Upgrade Tab displays', text2 : 'upgrade info like cost.' });
 }
 
 // what tier is the upgrade
 tierUpgrade() {
     let temp = this.props.supTier + ' of 5 tier building';
-    this.props.changeState({ text1 : 'this Resource Building is a' });
-    this.props.changeState({ text2 : temp });
+    this.props.changeState({ text1 : 'this Resource Building is a', text2 : temp });
 }
 
 // When any resource that can be upgraded is CLicked it will call this function
@@ -121,8 +114,7 @@ upgrade(resource) {
 
 // return to Base
 returnToBase() {
-    this.props.changeState({ text1 : 'Welcome Back to' });
-    this.props.changeState({ text2 : 'your OutPost' });
+    this.props.changeState({ text1 : 'Welcome Back to', text2 : 'your OutPost' });
 }
 
     render() {

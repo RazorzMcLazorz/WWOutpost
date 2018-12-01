@@ -99,24 +99,19 @@ class PlayerBase extends Component {
     construct(typer, W, F, M, S, O) {
 
         if(typer === 'home') {
-            this.props.changeState({ text1 : 'The Home adds new population' });
-            this.props.changeState({ text2 : 'to your supplies to make soldiers' });
+            this.props.changeState({ text1 : 'The Home adds new population', text2 : 'to your supplies to make soldiers' });
         }
         else if (typer === 'camp') {
-            this.props.changeState({ text1 : 'The Camp allows better troop' });
-            this.props.changeState({ text2 : 'training increasing troop survival' });
+            this.props.changeState({ text1 : 'The Camp allows better troop', text2 : 'training increasing troop survival' });
         }
         else if (typer === 'store') {
-            this.props.changeState({ text1 : 'The Store adds to population' });
-            this.props.changeState({ text2 : 'multiplier increases on tier' });
+            this.props.changeState({ text1 : 'The Store adds to population', text2 : 'multiplier increases on tier' });
         }
         else if (typer === 'school') {
-            this.props.changeState({ text1 : 'The School increases Research' });
-            this.props.changeState({ text2 : 'production in supplies' });
+            this.props.changeState({ text1 : 'The School increases Research', text2 : 'production in supplies' });
         }
         else if (typer === 'factory') {
-            this.props.changeState({ text1 : 'The Factory increases soldier' });
-            this.props.changeState({ text2 : 'survival on the battle field' });
+            this.props.changeState({ text1 : 'The Factory increases soldier', text2 : 'survival on the battle field' });
         }
         this.props.changeState({ buildResource : false });
         let temp = this.props.buildConnect;
@@ -163,29 +158,21 @@ class PlayerBase extends Component {
             this.props.changeState({build : false});
             object = this.props.building;
             object[temp] = true;
-            this.props.changeState({ building: object });
-            this.props.changeState({ buildResource : false });
+            this.props.changeState({ building: object, buildResource : false });
 
             console.log(board[typer][5]);
 
-            this.props.changeState({ pop : this.props.pop + board[typer][5]});
-            this.props.changeState({ resAdd : this.props.resAdd + board[typer][6]});
-            this.props.changeState({ popMult : this.props.popMult + board[typer][7]});
-            this.props.changeState({ survRate : this.props.survRate + board[typer][8]});
-            this.props.changeState({ winChance : this.props.winChance + board[typer][9]});
-
+            this.props.changeState({ pop : this.props.pop + board[typer][5], resAdd : this.props.resAdd + board[typer][6], popMult : this.props.popMult + board[typer][7], survRate : this.props.survRate + board[typer][8], winChance : this.props.winChance + board[typer][9] });
         }
         else {
             console.log('broke');
             this.props.changeState({ buildResource : true });
             if (this.props.research[unlocked] != true) {
-                this.props.changeState({ text1 : 'Not' });
-                this.props.changeState({ text2 : 'Researched' });
+                this.props.changeState({ text1 : 'Not', text2 : 'Researched' });
                 console.log(this.props.research);
             }
             else {
-                this.props.changeState({ text1 : 'Not enough' });
-                this.props.changeState({ text2 : 'supplies' });
+                this.props.changeState({ text1 : 'Not enough', text2 : 'supplies' });
             }
         }
     }
@@ -355,39 +342,27 @@ class PlayerBase extends Component {
         this.props.changeState({built: object });
         object = this.props.building;
         object[temp] = false;
-        this.props.changeState({ building: object });
-        this.props.changeState({upgrade: false});
+        this.props.changeState({ building: object, upgrade: false});
     }
 
     // Activates when a yellow square is clicked
     Build (model) {
-        this.props.changeState({ text1 : 'The Build Menu allows you to' });
-        this.props.changeState({ text2 : 'build buildings for population' });
+        this.props.changeState({ text1 : 'The Build Menu allows you to', text2 : 'build buildings for population' });
         // connects whats selected to global variable
         BUModel = model;
         BUType = this.props.built[BUModel];
 
         this.props.changeState({ buildResource : false });
         // reset price variables
-        this.props.changeState({ BUFood : 0 });
-        this.props.changeState({ BUWood : 0 });
-        this.props.changeState({ BUMetal : 0 });
-        this.props.changeState({ BUStone : 0 });
-        this.props.changeState({ BUOil : 0 });
+        this.props.changeState({ BUFood : 0,
+        BUWood : 0, BUMetal : 0, BUStone : 0, BUOil : 0,
         // reset bonus variables
-        this.props.changeState({ BUPop : 0 });
-        this.props.changeState({ BUPopM : 0 });
-        this.props.changeState({ BUBattleSurvive : 0 });
-        this.props.changeState({ BUResearch : 0 });
-        this.props.changeState({ BUBattleWining : 0 });
+        BUPop : 0, BUPopM : 0, BUBattleSurvive : 0, BUResearch : 0, BUBattleWining : 0 });
         let cost = '';
         // connecting to Build Menu
         if (this.props.building[model] === true) {
             console.log('Upgrade Menu');
-            this.props.changeState({upgrade: true});
-            this.props.changeState({build: false});
-            this.props.changeState({upgradeConnect: model});
-            this.props.changeState({capital: false});
+            this.props.changeState({ upgrade: true, build: false, upgradeConnect: model, capital: false});
             let type = this.props.built[BUModel];
             console.log(type + ' Build tab upgrade time');
             
@@ -397,49 +372,36 @@ class PlayerBase extends Component {
             else {
                 cost = TierThree[type];
             }
-            this.props.changeState({ BUFood : cost[0] });
-            this.props.changeState({ BUWood : cost[1] });
-            this.props.changeState({ BUMetal : cost[2] });
-            this.props.changeState({ BUStone : cost[3] });
-            this.props.changeState({ BUOil : cost[4] });
+            this.props.changeState({ BUFood : cost[0], BUWood : cost[1], BUMetal : cost[2], BUStone : cost[3], BUOil : cost[4] });
         }
         else if (this.props.building[model] === false) {
             console.log('Building Menu');
-            this.props.changeState({ build: true });
-            this.props.changeState({ upgrade: false });
-            this.props.changeState({ buildConnect: model });
-            this.props.changeState({capital: false});
-        }
+            this.props.changeState({ build: true, upgrade: false, buildConnect: model, capital: false});
+        }  
         else {
             console.log('not working');
         }
     }
     // Research text change
     TechText() {
-        this.props.changeState({ text1 : 'Tech Tab allows for upgrades to your' });
-        this.props.changeState({ text2 : 'current buildings and to add more.' });
+        this.props.changeState({ text1 : 'Tech Tab allows for upgrades to your', text2 : 'current buildings and to add more.' });
     }
     // Supply text change
     PointOut(type) {
-        this.props.changeState({ text1 : 'This is your ' + type + ' resource' });
-        this.props.changeState({ text2 : 'the + is what you gain per round' });
+        this.props.changeState({ text1 : 'This is your ' + type + ' resource', text2 : 'the + is what you gain per round' });
     }
     // Resource tab text change
     ResourceSwap() {
-        this.props.changeState({ text1 : 'Welcome to the Resource Tab' });
-        this.props.changeState({ text2 : 'Click a Resource to begin' });
+        this.props.changeState({ text1 : 'Welcome to the Resource Tab', text2 : 'Click a Resource to begin' });
     }
 
     // Access to Capital change
     Capital() {
         // Text change
-        this.props.changeState({ text1 : 'Your Capital Building that' });
-        this.props.changeState({ text2 : `gains ${this.props.resAdd} research per round.` });
+        this.props.changeState({ text1 : 'Your Capital Building that', text2 : `gains ${this.props.resAdd} research per round.` });
 
         // makes sure that its just Capital menu
-        this.props.changeState({upgrade: false});
-        this.props.changeState({build: false});
-        this.props.changeState({capital: true});
+        this.props.changeState({upgrade: false, build: false, capital: true});
 
         // changes what resource amount players see
         if (this.props.capitalTier === 1) {
@@ -487,43 +449,43 @@ class PlayerBase extends Component {
     CapitalUpgrade() {
         if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 1) {
             console.log('Capital Upgrade Complete 2');
-            this.props.changeState({ capitalTier : 2 });
-            this.props.changeState({ wood : this.props.wood - 8 });
-            this.props.changeState({ food : this.props.food - 5 });
-            this.props.changeState({ metal : this.props.metal - 7 });
-            this.props.changeState({ stone : this.props.stone - 4 });
-            this.props.changeState({ oil : this.props.oil - 3 });
-            this.props.changeState({ resAdd : this.props.resAdd + 6 });
+            this.props.changeState({ capitalTier : 2,
+            wood : this.props.wood - 8,
+            food : this.props.food - 5,
+            metal : this.props.metal - 7,
+            stone : this.props.stone - 4,
+            oil : this.props.oil - 3,
+            resAdd : this.props.resAdd + 6 });
         }
         else if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 2) {
             console.log('Capital Upgrade Complete 3');
-            this.props.changeState({ capitalTier : 3 });
-            this.props.changeState({ wood : this.props.wood - 8 });
-            this.props.changeState({ food : this.props.food - 5 });
-            this.props.changeState({ metal : this.props.metal - 7 });
-            this.props.changeState({ stone : this.props.stone - 4 });
-            this.props.changeState({ oil : this.props.oil - 3 });
-            this.props.changeState({ resAdd : this.props.resAdd + 6 });
+            this.props.changeState({ capitalTier : 3,
+            wood : this.props.wood - 8,
+            food : this.props.food - 5,
+            metal : this.props.metal - 7,
+            stone : this.props.stone - 4,
+            oil : this.props.oil - 3,
+            resAdd : this.props.resAdd + 6 });
         }
         else if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 3) {
             console.log('Capital Upgrade Complete 4');
-            this.props.changeState({ capitalTier : 4 });
-            this.props.changeState({ wood : this.props.wood - 8 });
-            this.props.changeState({ food : this.props.food - 5 });
-            this.props.changeState({ metal : this.props.metal - 7 });
-            this.props.changeState({ stone : this.props.stone - 4 });
-            this.props.changeState({ oil : this.props.oil - 3 });
-            this.props.changeState({ resAdd : this.props.resAdd + 6 });
+            this.props.changeState({ capitalTier : 4,
+            wood : this.props.wood - 8,
+            food : this.props.food - 5,
+            metal : this.props.metal - 7,
+            stone : this.props.stone - 4,
+            oil : this.props.oil - 3,
+            resAdd : this.props.resAdd + 6 });
         }
         else if (this.props.wood >= 8 && this.props.food >= 5 && this.props.metal >= 7 && this.props.stone >= 4 && this.props.oil >= 3 && this.props.capitalTier === 4) {
             console.log('Capital Upgrade Complete 5');
-            this.props.changeState({ capitalTier : 5 });
-            this.props.changeState({ wood : this.props.wood - 8 });
-            this.props.changeState({ food : this.props.food - 5 });
-            this.props.changeState({ metal : this.props.metal - 7 });
-            this.props.changeState({ stone : this.props.stone - 4 });
-            this.props.changeState({ oil : this.props.oil - 3 });
-            this.props.changeState({ resAdd : this.props.resAdd + 6 });
+            this.props.changeState({ capitalTier : 5,
+            wood : this.props.wood - 8,
+            food : this.props.food - 5,
+            metal : this.props.metal - 7,
+            stone : this.props.stone - 4,
+            oil : this.props.oil - 3,
+            resAdd : this.props.resAdd + 6 });
         }
         else {
             console.log('Capital Upgrade Failed');
@@ -540,8 +502,7 @@ class PlayerBase extends Component {
 
     // Upgrades Buildings
     Upgrader() {
-        this.props.changeState({ text1 : 'This Upgrades what' });
-        this.props.changeState({ text2 : 'Building is Selected' });
+        this.props.changeState({ text1 : 'This Upgrades what', text2 : 'Building is Selected' });
         let locate = BUType;
         console.log(locate + ' var');
         console.log(BUModel + ' redux');
@@ -637,8 +598,7 @@ class PlayerBase extends Component {
 
         }
         this.asset('');
-        this.props.changeState({ build: false });
-        this.props.changeState({ upgrade: false });
+        this.props.changeState({ build: false, upgrade: false });
         this.forceUpdate();
     }
 

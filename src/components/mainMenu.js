@@ -7,8 +7,7 @@ import * as actions from '../js/actions';
 class MainMenu extends Component {
 
     startGame() {
-        this.props.changeState({ text1 : 'Welcome to WWOutpost' });
-        this.props.changeState({ text2 : 'Click a Yellow square to start' });
+        this.props.changeState({ text1 : 'Welcome to WWOutpost', text2 : 'Click a Yellow square to start' });
     }
 
     render() {

@@ -16,9 +16,7 @@ class NextRound extends Component {
     // the more advanced tropp deployment
     Troop13(arg) {
         if (arg === 'reset') {
-            this.props.changeState({ troopAdd: 0 });
-            this.props.changeState({ troopAll: true });
-            this.props.changeState({ text1: 'Has been reset.' });
+            this.props.changeState({ troopAdd: 0, troopAll: true, text1: 'Has been reset.' });
         }
         else if (this.props.troopAll === true) {
             if (arg === '3rd') {
@@ -26,24 +24,21 @@ class NextRound extends Component {
                 let temp = troops * 0.3;
                 temp = Math.round(temp);
                 console.log(temp);
-                this.props.changeState({ troopAll: false });
-                this.props.changeState({ troopAdd: temp });
+                this.props.changeState({ troopAll: false, troopAdd: temp });
             }
             else if (arg === 'half') {
                 let troops = this.props.troop;
                 let temp = troops * .5;
                 temp = Math.round(temp);
                 console.log(temp);
-                this.props.changeState({ troopAll: false });
-                this.props.changeState({ troopAdd: temp });
+                this.props.changeState({ troopAll: false, troopAdd: temp });
             }
             else if (arg === 'all') {
                 let troops = this.props.troop;
                 let temp = troops;
                 temp = Math.round(temp);
                 console.log(temp);
-                this.props.changeState({ troopAll: false });
-                this.props.changeState({ troopAdd: temp });
+                this.props.changeState({ troopAll: false, troopAdd: temp });
             }
         }
         else {
@@ -72,11 +67,11 @@ class NextRound extends Component {
         let temp = this.props.round + 1;
         this.props.changeState({ round : temp });
         console.log('I work')
-        this.props.changeState({ wood : this.props.wood + this.props.woodAdd });
-        this.props.changeState({ food : this.props.food + this.props.foodAdd });
-        this.props.changeState({ metal : this.props.metal + this.props.metalAdd });
-        this.props.changeState({ stone : this.props.stone + this.props.stoneAdd });
-        this.props.changeState({ oil : this.props.oil + this.props.oilAdd });
+        this.props.changeState({ wood : this.props.wood + this.props.woodAdd,
+        food : this.props.food + this.props.foodAdd,
+        metal : this.props.metal + this.props.metalAdd,
+        stone : this.props.stone + this.props.stoneAdd,
+        oil : this.props.oil + this.props.oilAdd });
         ourRandomRange(1, 2);
         if (num === 1) {
             console.log('you win');
@@ -92,25 +87,24 @@ class NextRound extends Component {
             ourRandomRange(0, 1);
             this.props.changeState({ stoneGained : num });
             ourRandomRange(0, 1);
-            this.props.changeState({ oilGained : num });
-            this.props.changeState({ battleWon : this.props.battleWon + 1 });
+            this.props.changeState({ oilGained : num,
+            battleWon : this.props.battleWon + 1 });
         }
         else if (num === 2) {
             console.log('you loose');
-            this.props.changeState({ winLoose : 'you lost the battle' });
-            this.props.changeState({ survived : 0 });
-            this.props.changeState({ deaths : this.props.troopAdd });
-            this.props.changeState({ woodGained : 0 });
-            this.props.changeState({ foodGained : 0 });
-            this.props.changeState({ metalGained : 0 });
-            this.props.changeState({ stoneGained : 0 });
-            this.props.changeState({ oilGained : 0 });
+            this.props.changeState({ winLoose : 'you lost the battle',
+            survived : 0,
+            deaths : this.props.troopAdd,
+            woodGained : 0,
+            foodGained : 0,
+            metalGained : 0,
+            stoneGained : 0,
+            oilGained : 0 });
         }
         else {
             console.log('I Broke');
         }
-        this.props.changeState({ text1 : '' });
-        this.props.changeState({ text2 : '' });
+        this.props.changeState({ text1 : '', text2 : '' });
         if (this.props.round === 12) {
             this.props.changeState({ gameOver : true });
         }

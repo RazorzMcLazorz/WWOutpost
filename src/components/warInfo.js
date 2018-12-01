@@ -39,11 +39,10 @@ class WarInfo extends Component {
             else {
                 console.log('Tech change didnt work');
             }
-        this.props.changeState({ res : this.props.res - this.props.prevUnlockCost });
-        this.props.changeState({ pUTier : '' });
-        this.props.changeState({ prevUnlockCost : 0 });
-
-        this.props.changeState({ unlocklocks : object });
+        this.props.changeState({ res : this.props.res - this.props.prevUnlockCost,
+        pUTier : '',
+        prevUnlockCost : 0,
+        unlocklocks : object });
         console.log(this.props.unlocklocks);
         console.log(object);
         }
@@ -54,8 +53,7 @@ class WarInfo extends Component {
 
     AfterInfo() {
         this.Research();
-        this.props.changeState({ text1 : 'Welcome to Round ' + this.props.round + ' of 12' });
-        this.props.changeState({ text2 : 'Click yellow to begin again.' });
+        this.props.changeState({ text1 : 'Welcome to Round ' + this.props.round + ' of 12', text2 : 'Click yellow to begin again.' });
     }
 
     render() {
